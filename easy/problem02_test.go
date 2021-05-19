@@ -10,4 +10,6 @@ func TestSumOfEvenFibonaccisBelow(t *testing.T) {
 	// 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 	exp := 2 + 8 + 34
 	assert.Equal(t, exp, sumOfEvenFibonaccisBelow(100))
+
+	assert.Equal(t, 4613732, sumOfEvenFibonaccisBelow(4000000))
 }

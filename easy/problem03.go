@@ -22,15 +22,7 @@ func largestPrimeFactor(n int) int {
 			// not a factor
 			continue
 		}
-		isPrime := true
-		maxD := f / 2
-		for d := 2; d < maxD; d++ {
-			if f%d == 0 {
-				isPrime = false
-				break
-			}
-		}
-		if isPrime {
+		if IsPrime(f) {
 			return f
 		}
 	}
