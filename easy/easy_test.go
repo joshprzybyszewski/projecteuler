@@ -43,3 +43,7 @@ func TestIsPythagoreanTriplet(t *testing.T) {
 func TestSumOfPrimesBelow(t *testing.T) {
 	assert.Equal(t, 17, sumOfPrimesBelow(10))
 }
+
+func TestGetTriangleNumberWithMoreThanNDivisors(t *testing.T) {
+	assert.Equal(t, 28, getTriangleNumberWithMoreThanNDivisors(5))
+}

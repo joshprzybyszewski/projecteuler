@@ -44,19 +44,19 @@ func solve(puzzleNum int) {
 	case 6:
 		easy.SolveProblem6()
 	case 7:
-		// takes a long time
 		easy.SolveProblem7()
-		// solved = false
 	case 8:
 		easy.SolveProblem8()
 	case 9:
 		easy.SolveProblem9()
 	case 10:
 		// takes a long time to find the first 2 million primes
-		easy.SolveProblem10()
-		// solved = false
+		// easy.SolveProblem10()
+		solved = false
 	case 11:
 		easy.SolveProblem11()
+	case 12:
+		easy.SolveProblem12()
 	default:
 		solved = false
 		highestSolved = puzzleNum - 1
