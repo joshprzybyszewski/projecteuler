@@ -2,6 +2,8 @@ package easy
 
 import (
 	"fmt"
+
+	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
 func SolveProblem7() {
@@ -16,9 +18,20 @@ func SolveProblem7() {
 }
 
 func getNthPrime(n int) int {
+	below := primes.Below(n)
+	if n < len(below) {
+		return below[n]
+	}
+
 	nSeen := 0
-	for i := 2; ; i++ {
-		if IsPrime(i) {
+	starting := 2
+	if len(below) > 0 {
+		nSeen = len(below)
+		starting = below[len(below)-1]
+	}
+
+	for i := starting; ; i++ {
+		if primes.Is(i) {
 			nSeen++
 			if nSeen >= n {
 				return i

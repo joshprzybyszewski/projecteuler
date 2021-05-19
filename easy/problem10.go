@@ -2,6 +2,8 @@ package easy
 
 import (
 	"fmt"
+
+	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
 func SolveProblem10() {
@@ -15,11 +17,9 @@ func SolveProblem10() {
 }
 
 func sumOfPrimesBelow(max int) int {
-	total := 2
-	for i := 3; i < max; i += 2 {
-		if IsPrime(i) {
-			total += i
-		}
+	total := 0
+	for _, p := range primes.Below(max) {
+		total += p
 	}
 	return total
 }

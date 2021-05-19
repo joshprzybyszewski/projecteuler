@@ -2,6 +2,8 @@ package easy
 
 import (
 	"fmt"
+
+	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
 func SolveProblem5() {
@@ -22,7 +24,7 @@ func smallestDivisibleByRange(n int) int {
 	countOfAllFactors := make(map[int]int, 4)
 
 	for k := n; k > 1; k-- {
-		kFactors := GetPrimeFactorization(k)
+		kFactors := primes.Factors(k)
 		kCount := getCountOfNums(kFactors)
 		for factor, numNeeded := range kCount {
 			for countOfAllFactors[factor] < numNeeded {
@@ -37,4 +39,13 @@ func smallestDivisibleByRange(n int) int {
 		res *= f
 	}
 	return res
+}
+
+func getCountOfNums(s []int) map[int]int {
+	m := make(map[int]int, len(s))
+	for _, e := range s {
+		m[e]++
+	}
+
+	return m
 }

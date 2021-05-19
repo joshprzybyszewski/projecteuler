@@ -3,6 +3,8 @@ package easy
 import (
 	"fmt"
 	"math"
+
+	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
 func SolveProblem3() {
@@ -17,13 +19,13 @@ func SolveProblem3() {
 
 func largestPrimeFactor(n int) int {
 	max := int(math.Floor(math.Sqrt(float64(n))))
-	for f := max; f > 1; f-- {
-		if n%f != 0 {
-			// not a factor
-			continue
-		}
-		if IsPrime(f) {
-			return f
+	primesBelow := primes.Below(max)
+
+	for i := len(primesBelow) - 1; i >= 0; i-- {
+		p := primesBelow[i]
+		if n%p == 0 {
+			// it's a factor!
+			return p
 		}
 	}
 	return 1
