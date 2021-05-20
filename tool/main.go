@@ -54,7 +54,7 @@ func newEasyPuzzle(
 		log.Fatal(err)
 	}
 
-	filename := fmt.Sprintf("easy/puzzle%d.go", ep.Number)
+	filename := fmt.Sprintf("easy/problem%d.go", ep.Number)
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Fatal(err)
