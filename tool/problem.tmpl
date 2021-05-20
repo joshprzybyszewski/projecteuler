@@ -1,0 +1,19 @@
+{{ define "easyPuzzleFile" }}package easy
+
+import (
+	"fmt"
+)
+
+func SolveProblem{{.Number}}() {
+	/*
+	{{.Prompt}}
+	 */
+	ans := `TODO`
+	fmt.Printf("Problem {{.Number}} Answer: %v\n", ans)
+}
+
+{{ end }}
+
+{{ define "caseForMainSolver" }}	case {{.Number}}:
+		easy.SolveProblem{{.Number}}()
+{{ end }}

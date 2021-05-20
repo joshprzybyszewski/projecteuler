@@ -13,3 +13,9 @@ test: ## Run unit tests
 .PHONY: lint
 lint: ## Runs linters (via golangci-lint) on golang code
 	golangci-lint run -v ./...
+
+.PHONY: puzzle
+puzzle: ## generates the template for the puzzle
+	# See https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet
+	# Or  https://golang.org/pkg/text/template/
+	go run tool/main.go
