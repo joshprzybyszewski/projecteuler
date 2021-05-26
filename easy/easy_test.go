@@ -74,3 +74,19 @@ func TestGetSumOfTwoToThePower(t *testing.T) {
 	ans := getSumOfTwoToThePower(15)
 	assert.Equal(t, 26, ans)
 }
+
+func TestNumberToWord(t *testing.T) {
+	assert.Equal(t, `fifteen`, numberToWord(15, true))
+	assert.Equal(t, `three hundred and forty-two`, numberToWord(342, true))
+	assert.Equal(t, `one hundred and fifteen`, numberToWord(115, true))
+	assert.Equal(t, `nine hundred`, numberToWord(900, true))
+	assert.Equal(t, `one thousand`, numberToWord(1000, true))
+}
+
+func TestNumLettersInWord(t *testing.T) {
+	assert.Equal(t, 3, numLettersInWord(1))
+	assert.Equal(t, 3, numLettersInWord(2))
+	assert.Equal(t, 5, numLettersInWord(3))
+	assert.Equal(t, 4, numLettersInWord(4))
+	assert.Equal(t, 4, numLettersInWord(5))
+}
