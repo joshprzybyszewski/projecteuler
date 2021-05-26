@@ -62,7 +62,7 @@ func solve(puzzleNum int) {
 	case 14:
 		easy.SolveProblem14()
 	case 15:
-		// um todo
+		easy.SolveProblem15()
 	case 16:
 		easy.SolveProblem16()
 	case 17:
