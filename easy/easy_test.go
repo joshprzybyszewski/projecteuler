@@ -114,3 +114,15 @@ func TestNChooseK(t *testing.T) {
 	assert.Equal(t, 4, nChooseK(4, 3))
 	assert.Equal(t, 1, nChooseK(4, 4))
 }
+
+func TestCollapseMaxesDownTriangle(t *testing.T) {
+	tri := [][]int{
+		{3},
+		{7, 4},
+		{2, 4, 6},
+		{8, 5, 9, 3},
+	}
+	maxes := collapseMaxesDownTriangle(tri)
+	max := maxInSlice(maxes)
+	assert.Equal(t, 23, max)
+}
