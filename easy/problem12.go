@@ -2,7 +2,8 @@ package easy
 
 import (
 	"fmt"
-	"math"
+
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
 func SolveProblem12() {
@@ -51,20 +52,5 @@ func getTriangleNumberWithMoreThanNDivisors(n int) int {
 func getNumDivisors(
 	n int,
 ) int {
-	nDivisors := 2 // 1 & n
-
-	max := int(math.Floor(math.Sqrt(float64(n))))
-	for i := 2; i <= max; i++ {
-		if n%i == 0 {
-			if n == max {
-				// this number is a square, so the number of
-				// divisors only increments once
-				nDivisors++
-			} else {
-				nDivisors += 2
-			}
-		}
-	}
-
-	return nDivisors
+	return len(mathUtils.Divisors(n))
 }
