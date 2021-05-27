@@ -38,14 +38,14 @@ func sumOfAmicableNumbers(limit int) int {
 }
 
 func isAmicableNumber(n int) bool {
-	s1 := sumOfDivisors(n)
+	s1 := sumOfProperDivisors(n)
 	if n == s1 {
 		return false
 	}
-	s2 := sumOfDivisors(s1)
+	s2 := sumOfProperDivisors(s1)
 	return n == s2
 }
 
-func sumOfDivisors(n int) int {
+func sumOfProperDivisors(n int) int {
 	return mathUtils.Sum(mathUtils.ProperDivisors(n))
 }

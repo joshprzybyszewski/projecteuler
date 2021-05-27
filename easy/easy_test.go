@@ -178,3 +178,23 @@ func TestGetProblem22Answer(t *testing.T) {
 	assert.Equal(t, 53, getProblem22Answer([]string{`COLIN`}))
 	assert.Equal(t, 53+(2*53), getProblem22Answer([]string{`COLIN`, `COLIN`}))
 }
+
+func TestGetNumberState(t *testing.T) {
+	assert.Equal(t, perfect, getNumberState(28))
+	assert.Equal(t, abundant, getNumberState(12))
+	assert.Equal(t, deficient, getNumberState(11))
+}
+
+func TestAllAbundantNumbersBelow(t *testing.T) {
+	assert.Equal(t, []int{}, allAbundantNumbersBelow(11))
+	assert.Equal(t, []int{}, allAbundantNumbersBelow(12))
+	assert.Equal(t, []int{12}, allAbundantNumbersBelow(13))
+	assert.Equal(t, []int{12, 18, 20, 24}, allAbundantNumbersBelow(28))
+}
+
+func TestHasTwoElementsWithSum(t *testing.T) {
+	assert.True(t, hasTwoElementsWithSum(4, []int{2}))
+	assert.False(t, hasTwoElementsWithSum(5, []int{2}))
+	assert.True(t, hasTwoElementsWithSum(8, []int{2, 3, 4, 5}))
+	assert.False(t, hasTwoElementsWithSum(11, []int{2, 3, 4, 5}))
+}
