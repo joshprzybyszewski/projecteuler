@@ -168,3 +168,13 @@ func TestGetPrimeFactorialFactors(t *testing.T) {
 		assert.Equal(t, tc.exp, act)
 	}
 }
+
+func TestGetAlphabeticalValue(t *testing.T) {
+	assert.Equal(t, 53, getAlphabeticalValue(`COLIN`))
+	assert.Equal(t, 53, getAlphabeticalValue(`colin`))
+}
+
+func TestGetProblem22Answer(t *testing.T) {
+	assert.Equal(t, 53, getProblem22Answer([]string{`COLIN`}))
+	assert.Equal(t, 53+(2*53), getProblem22Answer([]string{`COLIN`, `COLIN`}))
+}
