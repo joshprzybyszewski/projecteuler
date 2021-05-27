@@ -3,6 +3,8 @@ package easy
 import (
 	"fmt"
 	"strconv"
+
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
 var (
@@ -12,7 +14,7 @@ var (
 func populateProblem13() {
 	problem13Grid = make([][]int, len(problem13Numbers))
 	for i, nStr := range problem13Numbers {
-		problem13Grid[i] = numberStringToInts(nStr)
+		problem13Grid[i] = mathUtils.StringToDigits(nStr)
 	}
 }
 

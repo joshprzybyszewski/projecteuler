@@ -2,10 +2,8 @@ package easy
 
 import (
 	"fmt"
-)
 
-const (
-	zeroByte = byte('0')
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
 var (
@@ -14,15 +12,7 @@ var (
 )
 
 func populateProblem8() {
-	problem8Digits = numberStringToInts(problem8Number)
-}
-
-func numberStringToInts(str string) []int {
-	res := make([]int, len(str))
-	for i := 0; i < len(str); i++ {
-		res[i] = int(str[i] - zeroByte)
-	}
-	return res
+	problem8Digits = mathUtils.StringToDigits(problem8Number)
 }
 
 func SolveProblem8() {
@@ -68,11 +58,11 @@ func findGreatestRollingProduct(
 		return 0
 	}
 
-	curProduct := getProduct(stream[:k])
+	curProduct := mathUtils.Product(stream[:k])
 	maxSeen := curProduct
 	for sI, eI := 0, k; eI < len(stream); {
 		if stream[sI] == 0 {
-			curProduct = getProduct(stream[sI+1 : eI+1])
+			curProduct = mathUtils.Product(stream[sI+1 : eI+1])
 		} else {
 			curProduct = (curProduct / stream[sI]) * stream[eI]
 		}
@@ -84,17 +74,4 @@ func findGreatestRollingProduct(
 	}
 
 	return maxSeen
-}
-
-func getProduct(
-	elems []int,
-) int {
-	p := 1
-	for _, e := range elems {
-		if e == 0 {
-			return 0
-		}
-		p *= e
-	}
-	return p
 }

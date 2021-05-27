@@ -108,3 +108,63 @@ func TestCollapseMaxesDownTriangle(t *testing.T) {
 	max := mathUtils.MaxInSlice(maxes)
 	assert.Equal(t, 23, max)
 }
+
+func TestRemove10s(t *testing.T) {
+	testCases := []struct {
+		input []int
+		exp   []int
+	}{{
+		input: []int{3, 5},
+		exp:   []int{3, 5},
+	}, {
+		input: []int{3, 5, 2, 11},
+		exp:   []int{3, 11},
+	}, {
+		input: []int{3, 5, 2, 11, 5},
+		exp:   []int{3, 5, 11},
+	}, {
+		input: []int{3, 5, 2, 11, 5, 2, 2, 2},
+		exp:   []int{2, 2, 3, 11},
+	}, {
+		input: []int{2, 5},
+		exp:   []int{},
+	}}
+
+	for _, tc := range testCases {
+		act := remove10s(tc.input)
+		assert.Equal(t, tc.exp, act)
+	}
+}
+
+func TestGetPrimeFactorialFactors(t *testing.T) {
+	testCases := []struct {
+		input int
+		exp   []int
+	}{{
+		input: 2,
+		exp:   []int{2},
+	}, {
+		input: 3,
+		exp:   []int{2, 3},
+	}, {
+		input: 4,
+		exp:   []int{2, 3, 2, 2},
+	}, {
+		input: 5,
+		exp:   []int{2, 3, 2, 2, 5},
+	}, {
+		input: 6,
+		exp:   []int{2, 3, 2, 2, 5, 2, 3},
+	}, {
+		input: 7,
+		exp:   []int{2, 3, 2, 2, 5, 2, 3, 7},
+	}, {
+		input: 8,
+		exp:   []int{2, 3, 2, 2, 5, 2, 3, 7, 2, 2, 2},
+	}}
+
+	for _, tc := range testCases {
+		act := getPrimeFactorialFactors(tc.input)
+		assert.Equal(t, tc.exp, act)
+	}
+}
