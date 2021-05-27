@@ -3,6 +3,7 @@ package easy
 import (
 	"testing"
 
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -96,25 +97,6 @@ func TestGetDownRightRoutesInGrid(t *testing.T) {
 	assert.Equal(t, 20, getDownRightRoutesInGrid(3))
 }
 
-func TestNChooseK(t *testing.T) {
-	assert.Equal(t, 1, nChooseK(1, 1))
-
-	assert.Equal(t, 1, nChooseK(2, 0))
-	assert.Equal(t, 2, nChooseK(2, 1))
-	assert.Equal(t, 1, nChooseK(2, 2))
-
-	assert.Equal(t, 1, nChooseK(3, 0))
-	assert.Equal(t, 3, nChooseK(3, 1))
-	assert.Equal(t, 3, nChooseK(3, 2))
-	assert.Equal(t, 1, nChooseK(3, 3))
-
-	assert.Equal(t, 1, nChooseK(4, 0))
-	assert.Equal(t, 4, nChooseK(4, 1))
-	assert.Equal(t, 6, nChooseK(4, 2))
-	assert.Equal(t, 4, nChooseK(4, 3))
-	assert.Equal(t, 1, nChooseK(4, 4))
-}
-
 func TestCollapseMaxesDownTriangle(t *testing.T) {
 	tri := [][]int{
 		{3},
@@ -123,6 +105,6 @@ func TestCollapseMaxesDownTriangle(t *testing.T) {
 		{8, 5, 9, 3},
 	}
 	maxes := collapseMaxesDownTriangle(tri)
-	max := maxInSlice(maxes)
+	max := mathUtils.MaxInSlice(maxes)
 	assert.Equal(t, 23, max)
 }

@@ -22,7 +22,12 @@ func Below(max int) []int {
 }
 
 func Factors(k int) []int {
-	primes := Below(k)
+	if k < 1 {
+		return nil
+	} else if k == 1 {
+		return []int{1}
+	}
+	primes := Below(k + 1)
 	factors := make([]int, 0, 4)
 
 	cur := k

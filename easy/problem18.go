@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
 var (
@@ -63,7 +65,7 @@ func SolveProblem18() {
 
 	tri := convertTriangleToSlices(problem18Triangle)
 	res := collapseMaxesDownTriangle(tri)
-	ans := maxInSlice(res)
+	ans := mathUtils.MaxInSlice(res)
 	fmt.Printf("Problem 18 Answer: %v\n", ans)
 }
 
@@ -95,29 +97,9 @@ func collapseMaxesDownTriangle(tri [][]int) []int {
 			if c < len(above) {
 				right = above[c]
 			}
-			tri[r][c] += max(left, right)
+			tri[r][c] += mathUtils.Max(left, right)
 		}
 	}
 
 	return tri[len(tri)-1]
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func maxInSlice(s []int) int {
-	if len(s) == 0 {
-		return 0
-	}
-	max := s[0]
-	for _, v := range s {
-		if v > max {
-			max = v
-		}
-	}
-	return max
 }

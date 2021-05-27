@@ -26,8 +26,8 @@ func getNthPrime(n int) int {
 	nSeen := 0
 	starting := 2
 	if len(below) > 0 {
-		nSeen = len(below)
-		starting = below[len(below)-1]
+		nSeen = len(below) - 1
+		starting = below[nSeen]
 	}
 
 	for i := starting; ; i++ {

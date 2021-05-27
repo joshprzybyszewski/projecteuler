@@ -11,6 +11,17 @@ func TestFactors(t *testing.T) {
 	assert.Equal(t, []int{2, 3, 3}, Factors(18))
 	assert.Equal(t, []int{3, 17}, Factors(51))
 	assert.Equal(t, []int{2, 2, 2, 3, 5}, Factors(120))
+
+	assert.Equal(t, []int{2, 5}, Factors(10))
+	assert.Equal(t, []int{3, 3}, Factors(9))
+	assert.Equal(t, []int{2, 2, 2}, Factors(8))
+	assert.Equal(t, []int{7}, Factors(7))
+	assert.Equal(t, []int{2, 3}, Factors(6))
+	assert.Equal(t, []int{5}, Factors(5))
+	assert.Equal(t, []int{2, 2}, Factors(4))
+	assert.Equal(t, []int{3}, Factors(3))
+	assert.Equal(t, []int{2}, Factors(2))
+	assert.Equal(t, []int{1}, Factors(1))
 }
 
 func TestIs(t *testing.T) {

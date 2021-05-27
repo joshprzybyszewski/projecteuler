@@ -2,6 +2,8 @@ package easy
 
 import (
 	"fmt"
+
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
 func SolveProblem15() {
@@ -19,24 +21,8 @@ func SolveProblem15() {
 func getDownRightRoutesInGrid(n int) int {
 	total := 0
 	for k := 0; k <= n; k++ {
-		choose := nChooseK(n, k)
+		choose := mathUtils.Choose(n, k)
 		total += (choose * choose)
 	}
 	return total
-}
-
-func nChooseK(n, k int) int {
-	if n < 1 || k < 0 || k > n {
-		return 0
-	}
-
-	choose := 1
-	for m := n; m > n-k; m-- {
-		choose = choose * m
-	}
-	for d := k; d > 1; d-- {
-		choose = choose / d
-	}
-
-	return choose
 }
