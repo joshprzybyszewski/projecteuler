@@ -1,5 +1,6 @@
 package mathUtils
 
+// n choose k = ( n! ) / ( k! * (n-k)! )
 func Choose(n, k int) int {
 	if n < 1 || k < 0 || k > n {
 		return 0

@@ -198,3 +198,28 @@ func TestHasTwoElementsWithSum(t *testing.T) {
 	assert.True(t, hasTwoElementsWithSum(8, []int{2, 3, 4, 5}))
 	assert.False(t, hasTwoElementsWithSum(11, []int{2, 3, 4, 5}))
 }
+
+func TestGetLexicographicPermutationAtIndex(t *testing.T) {
+	assert.Equal(t, `012`, getLexicographicPermutationAtIndex(0, 2, 1))
+	assert.Equal(t, `021`, getLexicographicPermutationAtIndex(0, 2, 2))
+	assert.Equal(t, `102`, getLexicographicPermutationAtIndex(0, 2, 3))
+	assert.Equal(t, `120`, getLexicographicPermutationAtIndex(0, 2, 4))
+	assert.Equal(t, `201`, getLexicographicPermutationAtIndex(0, 2, 5))
+	assert.Equal(t, `210`, getLexicographicPermutationAtIndex(0, 2, 6))
+
+	assert.Equal(t, `0123`, getLexicographicPermutationAtIndex(0, 3, 1))
+	assert.Equal(t, `0132`, getLexicographicPermutationAtIndex(0, 3, 2))
+	assert.Equal(t, `0213`, getLexicographicPermutationAtIndex(0, 3, 3))
+	assert.Equal(t, `0231`, getLexicographicPermutationAtIndex(0, 3, 4))
+	assert.Equal(t, `0312`, getLexicographicPermutationAtIndex(0, 3, 5))
+	assert.Equal(t, `0321`, getLexicographicPermutationAtIndex(0, 3, 6))
+	assert.Equal(t, `1023`, getLexicographicPermutationAtIndex(0, 3, 7))
+	assert.Equal(t, `1032`, getLexicographicPermutationAtIndex(0, 3, 8))
+	assert.Equal(t, `1203`, getLexicographicPermutationAtIndex(0, 3, 9))
+	assert.Equal(t, `1230`, getLexicographicPermutationAtIndex(0, 3, 10))
+	assert.Equal(t, `1302`, getLexicographicPermutationAtIndex(0, 3, 11))
+	assert.Equal(t, `1320`, getLexicographicPermutationAtIndex(0, 3, 12))
+	assert.Equal(t, `2013`, getLexicographicPermutationAtIndex(0, 3, 13))
+	assert.Equal(t, `2031`, getLexicographicPermutationAtIndex(0, 3, 14))
+	assert.Equal(t, `2103`, getLexicographicPermutationAtIndex(0, 3, 15))
+}
