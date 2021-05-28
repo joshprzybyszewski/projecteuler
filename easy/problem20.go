@@ -2,7 +2,6 @@ package easy
 
 import (
 	"fmt"
-	"log"
 	"sort"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
@@ -14,16 +13,9 @@ func SolveProblem20() {
 		Find the sum of the digits in the number 100!
 	*/
 	factors := getPrimeFactorialFactors(100)
-	log.Printf("factors len: %d\n", len(factors))
 	factors = remove10s(factors)
-	log.Printf("factors len: %d\n", len(factors))
-	log.Printf("factors: %v\n", factors)
-	// TODO, we have 191 factors. this overflows the max int.
-	// we need a way to figure out how to multiply all these together.
-	// maybe just use big int?
-	product := mathUtils.Product(factors)
-	log.Printf("product: %d\n", product)
-	ans := mathUtils.SumOfDigits(product)
+	product := mathUtils.BigProduct(factors)
+	ans := mathUtils.Sum(mathUtils.StringToDigits(product.String()))
 	fmt.Printf("Problem 20 Answer: %v\n", ans)
 }
 
