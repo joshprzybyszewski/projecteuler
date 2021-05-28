@@ -85,9 +85,9 @@ func solve(puzzleNum int) {
 		easy.SolveProblem24()
 	case 25:
 		easy.SolveProblem25()
+	// TEMPLATE_MARKER //
 	case 67:
 		easy.SolveProblem67()
-	// TEMPLATE_MARKER //
 	default:
 		solved = false
 		highestSolved = puzzleNum - 1

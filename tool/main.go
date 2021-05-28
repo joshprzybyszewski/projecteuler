@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/AlecAivazis/survey/v2"
@@ -72,7 +74,31 @@ func newEasyPuzzle(
 	}
 	defer mainF.Close()
 
-	err = tmpl.ExecuteTemplate(os.Stdout, `caseForMainSolver`, ep)
+	var lines []string
+	scan := bufio.NewScanner(bufio.NewReader(mainF))
+	scan.Split(bufio.ScanLines)
+	for scan.Scan() {
+		lines = append(lines, scan.Text())
+	}
+
+	mainFileWriter, err := os.Create(mainFileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer mainFileWriter.Close()
+	w := bufio.NewWriter(mainFileWriter)
+
+	for _, line := range lines {
+		if strings.Contains(string(line), mainMarker) {
+			err = tmpl.ExecuteTemplate(w, `caseForMainSolver`, ep)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
+		w.WriteString(line + "\n")
+	}
+
+	err = w.Flush()
 	if err != nil {
 		log.Fatal(err)
 	}
