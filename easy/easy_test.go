@@ -223,3 +223,90 @@ func TestGetLexicographicPermutationAtIndex(t *testing.T) {
 	assert.Equal(t, `2031`, getLexicographicPermutationAtIndex(0, 3, 14))
 	assert.Equal(t, `2103`, getLexicographicPermutationAtIndex(0, 3, 15))
 }
+
+func TestGetFib(t *testing.T) {
+
+	assert.Equal(t, uint(1), getFibonacciIndexWithNDigits(1))   //  0 ->  1 = +1
+	assert.Equal(t, uint(7), getFibonacciIndexWithNDigits(2))   //  1 ->  7 = +6
+	assert.Equal(t, uint(12), getFibonacciIndexWithNDigits(3))  //  7 -> 12 = +5
+	assert.Equal(t, uint(17), getFibonacciIndexWithNDigits(4))  // 12 -> 17 = +5
+	assert.Equal(t, uint(21), getFibonacciIndexWithNDigits(5))  // 17 -> 21 = +4
+	assert.Equal(t, uint(26), getFibonacciIndexWithNDigits(6))  // 21 -> 26 = +5
+	assert.Equal(t, uint(31), getFibonacciIndexWithNDigits(7))  // 26 -> 31 = +5
+	assert.Equal(t, uint(36), getFibonacciIndexWithNDigits(8))  // 31 -> 36 = +5
+	assert.Equal(t, uint(40), getFibonacciIndexWithNDigits(9))  // 36 -> 40 = +4
+	assert.Equal(t, uint(45), getFibonacciIndexWithNDigits(10)) // 40 -> 45 = +5
+	assert.Equal(t, uint(50), getFibonacciIndexWithNDigits(11)) // 45 -> 50 = +5
+	assert.Equal(t, uint(55), getFibonacciIndexWithNDigits(12)) // 50 -> 55 = +5
+	assert.Equal(t, uint(60), getFibonacciIndexWithNDigits(13)) // ?? -> ?? = +5
+	assert.Equal(t, uint(64), getFibonacciIndexWithNDigits(14)) // ?? -> ?? = +4
+
+	testCases := []struct {
+		digits int
+		index  uint
+	}{
+		{digits: 1, index: 1},   // +1
+		{digits: 2, index: 7},   // +6
+		{digits: 3, index: 12},  //  +5
+		{digits: 4, index: 17},  //  +5
+		{digits: 5, index: 21},  // +4
+		{digits: 6, index: 26},  //  +5
+		{digits: 7, index: 31},  //  +5
+		{digits: 8, index: 36},  //  +5
+		{digits: 9, index: 40},  // +4
+		{digits: 10, index: 45}, //  +5
+		{digits: 11, index: 50}, //  +5
+		{digits: 12, index: 55}, //  +5
+		{digits: 13, index: 60}, //  +5
+		{digits: 14, index: 64}, // +4
+		{digits: 15, index: 69}, //  +5
+		{digits: 16, index: 74}, //  +5
+		{digits: 17, index: 79}, //  +5
+		{digits: 18, index: 84}, //  +5
+		{digits: 19, index: 88}, // +4
+		{digits: 20, index: 93}, //  +5
+		{digits: 21, index: 0},
+	}
+
+	for _, tc := range testCases {
+		actIndex := getFibonacciIndexWithNDigits(tc.digits)
+		assert.Equal(t, tc.index, actIndex, "desired %d digits with index %d, but got %d", tc.digits, tc.index, actIndex)
+	}
+}
+
+func TestGetBigFibonacciIndexWithNDigits(t *testing.T) {
+
+	testCases := []struct {
+		digits int
+		index  uint
+	}{
+		{digits: 1, index: 1},   // +1
+		{digits: 2, index: 7},   // +6
+		{digits: 3, index: 12},  //  +5
+		{digits: 4, index: 17},  //  +5
+		{digits: 5, index: 21},  // +4
+		{digits: 6, index: 26},  //  +5
+		{digits: 7, index: 31},  //  +5
+		{digits: 8, index: 36},  //  +5
+		{digits: 9, index: 40},  // +4
+		{digits: 10, index: 45}, //  +5
+		{digits: 11, index: 50}, //  +5
+		{digits: 12, index: 55}, //  +5
+		{digits: 13, index: 60}, //  +5
+		{digits: 14, index: 64}, // +4
+		{digits: 15, index: 69}, //  +5
+		{digits: 16, index: 74}, //  +5
+		{digits: 17, index: 79}, //  +5
+		{digits: 18, index: 84}, //  +5
+		{digits: 19, index: 88}, // +4
+		{digits: 20, index: 93}, //  +5
+		{digits: 21, index: 93},
+		{digits: 22, index: 93},
+		{digits: 23, index: 93},
+	}
+
+	for _, tc := range testCases {
+		actIndex := getBigFibonacciIndexWithNDigits(tc.digits)
+		assert.Equal(t, tc.index, actIndex, "desired %d digits with index %d, but got %d", tc.digits, tc.index, actIndex)
+	}
+}

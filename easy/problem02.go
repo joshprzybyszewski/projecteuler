@@ -1,8 +1,11 @@
 package easy
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func SolveProblem2() {
+	// mathUtils.Sum(sequence.FibonaccisBelow(4000000))
 	sum := sumOfEvenFibonaccisBelow(4000000)
 	fmt.Printf("Problem 2 Answer: %d\n", sum)
 }

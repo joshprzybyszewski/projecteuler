@@ -78,11 +78,13 @@ func solve(puzzleNum int) {
 	case 22:
 		easy.SolveProblem22()
 	case 23:
-		// takes a long time to find the first 2 million primes
+		// takes a long time
 		// easy.SolveProblem23()
 		solved = false
 	case 24:
 		easy.SolveProblem24()
+	case 25:
+		easy.SolveProblem25()
 	case 67:
 		easy.SolveProblem67()
 	// TEMPLATE_MARKER //
