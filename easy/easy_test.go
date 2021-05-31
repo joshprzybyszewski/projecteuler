@@ -310,3 +310,58 @@ func TestGetBigFibonacciIndexWithNDigits(t *testing.T) {
 		assert.Equal(t, tc.index, actIndex, "desired %d digits with index %d, but got %d", tc.digits, tc.index, actIndex)
 	}
 }
+
+func TestGetDecimalMantissa(t *testing.T) {
+	testCases := []struct {
+		divisor   int
+		expPrefix []int
+		expCycle  []int
+	}{{
+		divisor:   2,
+		expPrefix: []int{5},
+	}, {
+		divisor:  3,
+		expCycle: []int{3},
+	}, {
+		divisor:   4,
+		expPrefix: []int{2, 5},
+	}, {
+		divisor:   5,
+		expPrefix: []int{2},
+	}, {
+		divisor:   6,
+		expPrefix: []int{1},
+		expCycle:  []int{6},
+	}, {
+		divisor:  7,
+		expCycle: []int{1, 4, 2, 8, 5, 7},
+	}, {
+		divisor:   8,
+		expPrefix: []int{1, 2, 5},
+	}, {
+		divisor:  9,
+		expCycle: []int{1},
+	}, {
+		divisor:   10,
+		expPrefix: []int{1},
+	}}
+
+	for _, tc := range testCases {
+		prefix, cycle := getDecimalMantissa(tc.divisor)
+		if len(tc.expPrefix) == 0 {
+			assert.Empty(t, prefix)
+		} else {
+			assert.Equal(t, tc.expPrefix, prefix)
+		}
+		if len(tc.expCycle) == 0 {
+			assert.Empty(t, cycle)
+		} else {
+			assert.Equal(t, tc.expCycle, cycle)
+		}
+	}
+}
+
+func TestGetMaxCycleLengthOfDivisors(t *testing.T) {
+	assert.Equal(t, 3, getMaxCycleLengthOfDivisors(5))
+	assert.Equal(t, 7, getMaxCycleLengthOfDivisors(10))
+}
