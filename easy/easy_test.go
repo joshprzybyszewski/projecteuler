@@ -365,3 +365,8 @@ func TestGetMaxCycleLengthOfDivisors(t *testing.T) {
 	assert.Equal(t, 3, getMaxCycleLengthOfDivisors(5))
 	assert.Equal(t, 7, getMaxCycleLengthOfDivisors(10))
 }
+
+func TestGetNumConsecutivePrimes(t *testing.T) {
+	assert.Equal(t, 40, getNumConsecutivePrimes(1, 41))
+	assert.Equal(t, 80, getNumConsecutivePrimes(-79, 1601))
+}
