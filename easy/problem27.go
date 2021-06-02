@@ -40,17 +40,23 @@ func getProblem27Answer() int {
 
 	max := 0
 	prod := 0
-	absMax := 999
 
-	// we could just iterate through the prime numbers
-	// (at least for b), but this works quick enough
-	for a := absMax; a >= -absMax; a-- {
-		for b := absMax; b >= -absMax; b-- {
-			numC := getNumConsecutivePrimes(a, b)
-			if numC > max {
-				max = numC
-				prod = a * b
-			}
+	check := func(a, b int) {
+		numC := getNumConsecutivePrimes(a, b)
+		if numC > max {
+			max = numC
+			prod = a * b
+		}
+	}
+
+	// check through all pairs of primes below 1000
+	p := primes.Below(1000)
+	for _, a := range p {
+		for _, b := range p {
+			check(a, b)
+			check(a, -b)
+			check(-a, b)
+			check(-a, -b)
 		}
 	}
 
