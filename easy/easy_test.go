@@ -370,3 +370,10 @@ func TestGetNumConsecutivePrimes(t *testing.T) {
 	assert.Equal(t, 40, getNumConsecutivePrimes(1, 41))
 	assert.Equal(t, 80, getNumConsecutivePrimes(-79, 1601))
 }
+
+func TestGetSumOfProblem28Spiral(t *testing.T) {
+	assert.Equal(t, 1, getSumOfProblem28Spiral(1))
+	assert.Equal(t, 25, getSumOfProblem28Spiral(3))
+	assert.Equal(t, 101, getSumOfProblem28Spiral(5))
+	assert.Zero(t, getSumOfProblem28Spiral(6))
+}
