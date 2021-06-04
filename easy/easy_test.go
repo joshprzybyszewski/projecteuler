@@ -1,9 +1,12 @@
 package easy
 
 import (
+	"log"
+	"sort"
 	"testing"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
+	"github.com/joshprzybyszewski/projecteuler/utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -300,9 +303,9 @@ func TestGetBigFibonacciIndexWithNDigits(t *testing.T) {
 		{digits: 18, index: 84}, //  +5
 		{digits: 19, index: 88}, // +4
 		{digits: 20, index: 93}, //  +5
-		{digits: 21, index: 93},
-		{digits: 22, index: 93},
-		{digits: 23, index: 93},
+		{digits: 21, index: 98},
+		{digits: 22, index: 103},
+		{digits: 23, index: 107},
 	}
 
 	for _, tc := range testCases {
@@ -376,4 +379,42 @@ func TestGetSumOfProblem28Spiral(t *testing.T) {
 	assert.Equal(t, 25, getSumOfProblem28Spiral(3))
 	assert.Equal(t, 101, getSumOfProblem28Spiral(5))
 	assert.Zero(t, getSumOfProblem28Spiral(6))
+}
+
+func TestGetNumDistinctTermsForARaisedB(t *testing.T) {
+	brute := bruteForceSequenceARaisedB(2, 5, 2, 5)
+	// 4, 8, 9, 16, 25, 27, 32, 64, 81, 125, 243, 256, 625, 1024, 3125
+	assert.Equal(t, []uint64{4, 8, 9, 16, 25, 27, 32, 64, 81, 125, 243, 256, 625, 1024, 3125}, brute)
+	assert.Equal(t, 15, getNumDistinctTermsForARaisedB(2, 5, 2, 5))
+
+	for max := uint64(6); max <= 16; max++ {
+		brute = bruteForceSequenceARaisedB(2, max, 2, max)
+		assert.Equal(t, len(brute), getNumDistinctTermsForARaisedB(2, int(max), 2, int(max)), `checked for %d`, int(max))
+	}
+
+	log.Printf("starting 2,8,2,8")
+	brute = bruteForceSequenceARaisedB(2, 8, 2, 8)
+	assert.Equal(t, len(brute), getNumDistinctTermsForARaisedB(2, 8, 2, 8))
+
+}
+
+func bruteForceSequenceARaisedB(
+	minA, maxA,
+	minB, maxB uint64,
+) []uint64 {
+	res := make([]uint64, 0, 8)
+	for a := minA; a <= maxA; a++ {
+		for b := minB; b <= maxB; b++ {
+			aToTheB := mathUtils.Raised(a, b)
+			if utils.Uint64Contains(res, aToTheB) {
+				log.Printf("Skipping %3d ^ %3d\n", a, b)
+				continue
+			}
+			res = append(res, aToTheB)
+		}
+	}
+	sort.Slice(res, func(i, j int) bool {
+		return res[i] < res[j]
+	})
+	return res
 }

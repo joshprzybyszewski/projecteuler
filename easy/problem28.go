@@ -2,6 +2,8 @@ package easy
 
 import (
 	"fmt"
+
+	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
 func SolveProblem28() {
@@ -27,7 +29,7 @@ func SolveProblem28() {
 }
 
 func getSumOfProblem28Spiral(n int) int {
-	if n%2 == 0 {
+	if utils.IsEven(n) {
 		// invalid input!
 		return 0
 	}

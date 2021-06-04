@@ -2,6 +2,8 @@ package easy
 
 import (
 	"fmt"
+
+	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
 func SolveProblem2() {
@@ -18,7 +20,7 @@ func sumOfEvenFibonaccisBelow(max int) int {
 		if b >= max {
 			return total
 		}
-		if b%2 == 0 {
+		if utils.IsEven(b) {
 			total += b
 		}
 	}
