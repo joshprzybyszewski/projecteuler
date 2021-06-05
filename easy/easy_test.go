@@ -471,3 +471,32 @@ func TestIsPalindrome(t *testing.T) {
 	assert.True(t, isPalindrome(585))
 	assert.True(t, isBase2Palindrome(585))
 }
+
+func TestIsTruncatablePrime(t *testing.T) {
+	assert.False(t, isTruncatablePrime(2))
+	assert.False(t, isTruncatablePrime(3))
+	assert.False(t, isTruncatablePrime(5))
+	assert.False(t, isTruncatablePrime(7))
+	assert.True(t, isTruncatablePrime(3797))
+}
+
+func TestGetNTruncatablePrimes(t *testing.T) {
+	truncatable := []int{
+		37, 53, 73,
+		313, 317,
+		373, 797,
+		3137, 3797,
+		739397, 1,
+	}
+	assert.Equal(t, truncatable[:1], getNTruncatablePrimes(1, 10000000, nil))
+	assert.Equal(t, truncatable[:2], getNTruncatablePrimes(2, 5000, nil))
+	assert.Equal(t, truncatable[:3], getNTruncatablePrimes(3, 5000, nil))
+	assert.Equal(t, truncatable[:4], getNTruncatablePrimes(4, 5000, nil))
+	assert.Equal(t, truncatable[:5], getNTruncatablePrimes(5, 5000, nil))
+	assert.Equal(t, truncatable[:6], getNTruncatablePrimes(6, 5000, nil))
+	assert.Equal(t, truncatable[:7], getNTruncatablePrimes(7, 5000, nil))
+	assert.Equal(t, truncatable[:8], getNTruncatablePrimes(8, 5000, nil))
+	assert.Equal(t, truncatable[:9], getNTruncatablePrimes(9, 5000, nil))
+	assert.Equal(t, truncatable[:10], getNTruncatablePrimes(10, 100000, nil))
+	assert.Equal(t, truncatable[:11], getNTruncatablePrimes(11, 100000, nil))
+}
