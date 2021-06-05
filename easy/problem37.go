@@ -2,6 +2,7 @@ package easy
 
 import (
 	"fmt"
+	"sort"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 	"github.com/joshprzybyszewski/projecteuler/primes"
@@ -12,58 +13,106 @@ func SolveProblem37() {
 		Find the sum of the only eleven primes that are both
 		truncatable from left to right and right to left.
 	*/
-	all := getNTruncatablePrimes(11, 5000, nil)
+	tpc := &truncatablePrimesCache{}
+	tpc.populate()
+	all := tpc.get()
 	ans := mathUtils.Sum(all)
 	fmt.Printf("Problem 37 Answer: %v = sum(%v)\n", ans, all)
 }
 
-func getNTruncatablePrimes(
-	n, max int,
-	found []int,
-) []int {
-	maxFound := 10
-	if len(found) > 0 {
-		maxFound = found[len(found)-1] + 1
-	}
-	ps := primes.Below(max)
-	for _, p := range ps {
-		if p > maxFound && isTruncatablePrime(p) {
-			found = append(found, p)
-		}
-	}
+type truncatablePrimesCache struct {
+	leftBySize  map[int][]truncPrime
+	rightBySize map[int][]truncPrime
 
-	if len(found) >= n {
-		return found[:n]
-	}
-
-	return getNTruncatablePrimes(n, max*10, found)
+	both map[int]struct{}
 }
 
-// assumes input is prime
-func isTruncatablePrime(n int) bool {
-	if n < 10 {
-		return false
+func (tpc *truncatablePrimesCache) get() []int {
+	res := make([]int, 0, 11)
+	for n := range tpc.both {
+		res = append(res, n)
+	}
+	sort.Ints(res)
+	return res
+}
+
+func (tpc *truncatablePrimesCache) populate() {
+	tpc.both = map[int]struct{}{}
+	numExpected := 11
+
+	singles := primes.Below(10)
+	totalRange := primes.Below(1000000)
+	splices := []func([]int, int) int{
+		func(s []int, p int) int {
+			return spliceDigits(s, []int{p})
+		}, func(s []int, p int) int {
+			return spliceDigits([]int{p}, s)
+		},
 	}
 
-	digits := mathUtils.ToDigits(n)
-
-	for i := 0; i < len(digits); i++ {
-		if digits[i]%2 == 0 {
-			return false
+	for _, smaller := range totalRange {
+		sDigits := mathUtils.ToDigits(smaller)
+		for _, p := range singles {
+			for _, splice := range splices {
+				val := splice(sDigits, p)
+				if isTruncatablePrime(val) {
+					tpc.both[val] = struct{}{}
+				}
+				if len(tpc.both) >= numExpected {
+					return
+				}
+			}
 		}
 	}
+}
 
-	for i := 1; i < len(digits); i++ {
-		n := spliceDigits(digits[:i], nil)
-		if !primes.Is(n) {
-			return false
-		}
+type truncPrime struct {
+	digits []int
+	n      int
+}
 
-		n = spliceDigits(digits[len(digits)-i:], nil)
+func newTruncPrime(n int) truncPrime {
+	return truncPrime{
+		n:      n,
+		digits: mathUtils.ToDigits(n),
+	}
+}
+
+func (tp truncPrime) isBoth() bool {
+	return !tp.isInvalid() && tp.isLeft() && tp.isRight()
+}
+
+func (tp truncPrime) isInvalid() bool {
+	if tp.n < 10 || !primes.Is(tp.n) {
+		return true
+	}
+	return false
+}
+
+func (tp truncPrime) isLeft() bool {
+	// returns true if every left-side substring is prime
+	for i := 1; i < len(tp.digits); i++ {
+		n := spliceDigits(tp.digits[:i], nil)
 		if !primes.Is(n) {
 			return false
 		}
 	}
 
 	return true
+}
+
+func (tp truncPrime) isRight() bool {
+	// returns true if every right-side substring is prime
+	for i := len(tp.digits) - 1; i > 0; i-- {
+		n := spliceDigits(tp.digits[i:], nil)
+		if !primes.Is(n) {
+			return false
+		}
+	}
+
+	return true
+}
+
+func isTruncatablePrime(n int) bool {
+	return newTruncPrime(n).isBoth()
 }

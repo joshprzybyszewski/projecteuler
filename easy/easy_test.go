@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
+	"github.com/joshprzybyszewski/projecteuler/primes"
 	"github.com/joshprzybyszewski/projecteuler/utils"
 	"github.com/stretchr/testify/assert"
 )
@@ -477,26 +478,41 @@ func TestIsTruncatablePrime(t *testing.T) {
 	assert.False(t, isTruncatablePrime(3))
 	assert.False(t, isTruncatablePrime(5))
 	assert.False(t, isTruncatablePrime(7))
+
+	assert.False(t, isTruncatablePrime(311))
+
+	assert.True(t, primes.Is(7))
+	assert.True(t, primes.Is(37))
+	assert.True(t, primes.Is(379))
 	assert.True(t, isTruncatablePrime(3797))
+	assert.True(t, primes.Is(797))
+	assert.True(t, primes.Is(97))
+	assert.True(t, primes.Is(7))
+
+	assert.False(t, isTruncatablePrime(3113))
+
+	assert.True(t, isTruncatablePrime(23))
+	assert.True(t, isTruncatablePrime(37))
+	assert.True(t, isTruncatablePrime(53))
+	assert.True(t, isTruncatablePrime(73))
+	assert.True(t, isTruncatablePrime(313))
+	assert.True(t, isTruncatablePrime(317))
+	assert.True(t, isTruncatablePrime(373))
+	assert.True(t, isTruncatablePrime(797))
+	assert.True(t, isTruncatablePrime(3137))
+	assert.True(t, isTruncatablePrime(3797))
+	assert.True(t, isTruncatablePrime(739397))
 }
 
 func TestGetNTruncatablePrimes(t *testing.T) {
 	truncatable := []int{
-		37, 53, 73,
+		23, 37, 53, 73,
 		313, 317,
 		373, 797,
 		3137, 3797,
-		739397, 1,
+		739397,
 	}
-	assert.Equal(t, truncatable[:1], getNTruncatablePrimes(1, 10000000, nil))
-	assert.Equal(t, truncatable[:2], getNTruncatablePrimes(2, 5000, nil))
-	assert.Equal(t, truncatable[:3], getNTruncatablePrimes(3, 5000, nil))
-	assert.Equal(t, truncatable[:4], getNTruncatablePrimes(4, 5000, nil))
-	assert.Equal(t, truncatable[:5], getNTruncatablePrimes(5, 5000, nil))
-	assert.Equal(t, truncatable[:6], getNTruncatablePrimes(6, 5000, nil))
-	assert.Equal(t, truncatable[:7], getNTruncatablePrimes(7, 5000, nil))
-	assert.Equal(t, truncatable[:8], getNTruncatablePrimes(8, 5000, nil))
-	assert.Equal(t, truncatable[:9], getNTruncatablePrimes(9, 5000, nil))
-	assert.Equal(t, truncatable[:10], getNTruncatablePrimes(10, 100000, nil))
-	assert.Equal(t, truncatable[:11], getNTruncatablePrimes(11, 100000, nil))
+	tpc := &truncatablePrimesCache{}
+	tpc.populate()
+	assert.Equal(t, truncatable, tpc.get())
 }
