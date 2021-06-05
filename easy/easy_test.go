@@ -418,3 +418,13 @@ func bruteForceSequenceARaisedB(
 	})
 	return res
 }
+
+func TestWaysToBuildSum(t *testing.T) {
+	assert.Equal(t, 0, waysToBuildSum(0, []uint{1}))
+	assert.Equal(t, 1, waysToBuildSum(1, []uint{1}))
+	assert.Equal(t, 1, waysToBuildSum(2, []uint{1}))
+
+	assert.Equal(t, 2, waysToBuildSum(2, []uint{2, 1})) // {2}, {1, 1}
+	assert.Equal(t, 2, waysToBuildSum(3, []uint{2, 1})) // {2, 1}, {1, 1, 1}
+	assert.Equal(t, 3, waysToBuildSum(4, []uint{2, 1})) // {2, 2}, {2, 1, 1}, {1, 1, 1, 1}
+}
