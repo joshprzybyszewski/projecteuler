@@ -2,6 +2,9 @@ package easy
 
 import (
 	"fmt"
+	"strconv"
+
+	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
 func SolveProblem4() {
@@ -31,12 +34,5 @@ func largestPalindromeInRange(min, max int) int {
 }
 
 func isPalindrome(n int) bool {
-	s := fmt.Sprintf("%d", n)
-	for i := 0; i < len(s)/2; i++ {
-		if s[i] != s[len(s)-1-i] {
-			return false
-		}
-	}
-
-	return true
+	return utils.IsPalindrome(strconv.Itoa(n))
 }

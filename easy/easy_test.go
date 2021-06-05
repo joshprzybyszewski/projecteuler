@@ -466,3 +466,8 @@ func TestSpliceDigits(t *testing.T) {
 func TestGetNumberOfCircularPrimesBelow(t *testing.T) {
 	assert.Equal(t, 13, getNumberOfCircularPrimesBelow(100))
 }
+
+func TestIsPalindrome(t *testing.T) {
+	assert.True(t, isPalindrome(585))
+	assert.True(t, isBase2Palindrome(585))
+}

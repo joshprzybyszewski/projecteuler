@@ -111,6 +111,8 @@ func solve(puzzleNum int) {
 		// gotta build the prime cache here too...
 		// easy.SolveProblem35()
 		solved = false
+	case 36:
+		easy.SolveProblem36()
 		// TEMPLATE_MARKER //
 	case 67:
 		easy.SolveProblem67()
