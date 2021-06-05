@@ -428,30 +428,18 @@ func TestWaysToBuildSum(t *testing.T) {
 	assert.Equal(t, 3, waysToBuildSum(4, []uint{2, 1})) // {2, 2}, {2, 1, 1}, {1, 1, 1, 1}
 }
 
-func TestIsPandigital(t *testing.T) {
-	assert.True(t, isPandigital(123456789))
-	assert.True(t, isPandigital(123, 456789))
-	assert.True(t, isPandigital(123, 456, 789))
+func TestIsTrickyFraction(t *testing.T) {
+	assert.True(t, isTrickyFraction(49, 98))
 
-	assert.False(t, isPandigital())
-	assert.False(t, isPandigital(12, 456, 789))
-	assert.False(t, isPandigital(1))
-	assert.False(t, isPandigital(121, 456, 789))
+	assert.False(t, isTrickyFraction(33, 66))
+	assert.False(t, isTrickyFraction(30, 50))
 }
 
-func TestIsProductPandigitalWithMultipliers(t *testing.T) {
-	assert.True(t, isProductPandigitalWithMultipliers(7254))
+func TestGetAllTrickyFractions(t *testing.T) {
+	ns, ds := getAllTrickyFractions()
+	assert.Len(t, ns, 4)
+	assert.Len(t, ds, 4)
 
-	assert.False(t, isProductPandigitalWithMultipliers(7253))
-	assert.False(t, isProductPandigitalWithMultipliers(1))
-}
-
-func TestHasDuplicateDigitsOrZeros(t *testing.T) {
-	assert.False(t, hasDuplicateDigitsOrZeros(7254))
-	assert.False(t, hasDuplicateDigitsOrZeros(7253))
-	assert.False(t, hasDuplicateDigitsOrZeros(1))
-
-	assert.True(t, hasDuplicateDigitsOrZeros(0))
-	assert.True(t, hasDuplicateDigitsOrZeros(10))
-	assert.True(t, hasDuplicateDigitsOrZeros(121))
+	assert.Empty(t, ns)
+	assert.Empty(t, ds)
 }
