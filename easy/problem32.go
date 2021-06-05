@@ -5,7 +5,6 @@ import (
 	"sort"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
-	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
 func SolveProblem32() {
@@ -25,46 +24,40 @@ func SolveProblem32() {
 }
 
 func getSumOfAllPandigitalNumbers() int {
+	products := make(map[int]struct{}, 32)
+
+	tenDigits := 1000000000
+	for d1 := 1; d1 < tenDigits; d1++ {
+		for d2 := d1; d2 < tenDigits; d2++ {
+			p := d1 * d2
+			if p >= tenDigits {
+				break
+			}
+			digits := allDigits(p, d1, d2)
+			if isPandigital(digits) {
+				products[p] = struct{}{}
+			}
+		}
+	}
+
 	sum := 0
 
-	for product := 1; product < 1000000000; product++ {
-		if isProductPandigitalWithMultipliers(product) {
-			sum += product
-		}
+	for p := range products {
+		sum += p
 	}
 
 	return sum
 }
 
-func isProductPandigitalWithMultipliers(product int) bool {
-	if hasDuplicateDigitsOrZeros(product) {
-		return false
-	}
-
-	// we're counting on Divisors returning pairs of divisors
-	// so that the entries at i and i+1 multiply to get product.
-	// we're also betting on the first two entries being 1 and n
-	divisors := mathUtils.GetDivisorsFromPrimeFactors(
-		product,
-		primes.Factors(product),
-	)
-	for i := 2; i+1 < len(divisors); i += 2 {
-		if isPandigital(
-			product,
-			divisors[i],
-			divisors[i+1],
-		) {
-			return true
-		}
-	}
-	return false
-}
-
-func isPandigital(s ...int) bool {
-	all := make([]int, 0, 9)
+func allDigits(s ...int) []int {
+	all := make([]int, 0, 32)
 	for _, e := range s {
 		all = append(all, mathUtils.ToDigits(e)...)
 	}
+	return all
+}
+
+func isPandigital(all []int) bool {
 	if len(all) != 9 {
 		return false
 	}
@@ -77,20 +70,4 @@ func isPandigital(s ...int) bool {
 	}
 
 	return true
-}
-
-func hasDuplicateDigitsOrZeros(e int) bool {
-	digits := mathUtils.ToDigits(e)
-	sort.Ints(digits)
-	if digits[0] == 0 {
-		return true
-	}
-
-	for i := 0; i < len(digits)-1; i++ {
-		if digits[i] == digits[i+1] {
-			return true
-		}
-	}
-
-	return false
 }
