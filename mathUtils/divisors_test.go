@@ -17,3 +17,11 @@ func TestProperDivisors(t *testing.T) {
 	assert.ElementsMatch(t, []int{1, 2, 3, 4, 6}, ProperDivisors(12))
 	assert.ElementsMatch(t, []int{1}, ProperDivisors(7))
 }
+
+func TestGetDivisorsFromPrimeFactors(t *testing.T) {
+	assert.Equal(t, Divisors(6), GetDivisorsFromPrimeFactors(6, []int{2, 3}))
+	assert.Equal(t, Divisors(12), GetDivisorsFromPrimeFactors(12, []int{2, 2, 3}))
+	assert.Equal(t, Divisors(7), GetDivisorsFromPrimeFactors(7, []int{7}))
+
+	assert.Equal(t, Divisors(24), GetDivisorsFromPrimeFactors(24, []int{2, 2, 2, 3}))
+}

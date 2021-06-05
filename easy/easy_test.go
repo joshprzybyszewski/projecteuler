@@ -407,7 +407,6 @@ func bruteForceSequenceARaisedB(
 		for b := minB; b <= maxB; b++ {
 			aToTheB := mathUtils.Raised(a, b)
 			if utils.Uint64Contains(res, aToTheB) {
-				log.Printf("Skipping %3d ^ %3d\n", a, b)
 				continue
 			}
 			res = append(res, aToTheB)
@@ -427,4 +426,32 @@ func TestWaysToBuildSum(t *testing.T) {
 	assert.Equal(t, 2, waysToBuildSum(2, []uint{2, 1})) // {2}, {1, 1}
 	assert.Equal(t, 2, waysToBuildSum(3, []uint{2, 1})) // {2, 1}, {1, 1, 1}
 	assert.Equal(t, 3, waysToBuildSum(4, []uint{2, 1})) // {2, 2}, {2, 1, 1}, {1, 1, 1, 1}
+}
+
+func TestIsPandigital(t *testing.T) {
+	assert.True(t, isPandigital(123456789))
+	assert.True(t, isPandigital(123, 456789))
+	assert.True(t, isPandigital(123, 456, 789))
+
+	assert.False(t, isPandigital())
+	assert.False(t, isPandigital(12, 456, 789))
+	assert.False(t, isPandigital(1))
+	assert.False(t, isPandigital(121, 456, 789))
+}
+
+func TestIsProductPandigitalWithMultipliers(t *testing.T) {
+	assert.True(t, isProductPandigitalWithMultipliers(7254))
+
+	assert.False(t, isProductPandigitalWithMultipliers(7253))
+	assert.False(t, isProductPandigitalWithMultipliers(1))
+}
+
+func TestHasDuplicateDigitsOrZeros(t *testing.T) {
+	assert.False(t, hasDuplicateDigitsOrZeros(7254))
+	assert.False(t, hasDuplicateDigitsOrZeros(7253))
+	assert.False(t, hasDuplicateDigitsOrZeros(1))
+
+	assert.True(t, hasDuplicateDigitsOrZeros(0))
+	assert.True(t, hasDuplicateDigitsOrZeros(10))
+	assert.True(t, hasDuplicateDigitsOrZeros(121))
 }
