@@ -445,3 +445,24 @@ func TestIsSumOfFactorialsOfDigits(t *testing.T) {
 	assert.True(t, isSumOfFactorialsOfDigits(145))
 	assert.False(t, isSumOfFactorialsOfDigits(31))
 }
+
+func TestIsCircularPrime(t *testing.T) {
+	assert.True(t, isCircularPrime(2))
+	assert.True(t, isCircularPrime(13))
+	assert.True(t, isCircularPrime(31))
+	assert.True(t, isCircularPrime(197))
+}
+
+func TestSpliceDigits(t *testing.T) {
+	assert.Zero(t, spliceDigits([]int{}, []int{}))
+
+	assert.Equal(t, 13, spliceDigits([]int{1, 3}, []int{}))
+	assert.Equal(t, 13, spliceDigits([]int{}, []int{1, 3}))
+
+	assert.Equal(t, 12, spliceDigits([]int{1}, []int{2}))
+	assert.Equal(t, 1225, spliceDigits([]int{1, 2}, []int{2, 5}))
+}
+
+func TestGetNumberOfCircularPrimesBelow(t *testing.T) {
+	assert.Equal(t, 13, getNumberOfCircularPrimesBelow(100))
+}
