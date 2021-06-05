@@ -25,20 +25,41 @@ func SolveProblem32() {
 
 func getSumOfAllPandigitalNumbers() int {
 	products := make(map[int]struct{}, 32)
-
 	tenDigits := 1000000000
-	for d1 := 1; d1 < tenDigits; d1++ {
-		for d2 := d1; d2 < tenDigits; d2++ {
-			p := d1 * d2
-			if p >= tenDigits {
-				break
-			}
-			digits := allDigits(p, d1, d2)
-			if isPandigital(digits) {
-				products[p] = struct{}{}
+
+	// I'm not clever; I stole this from the internet.
+	// my solution ran in about 5 minutes. By being
+	// clever like this and filtering down, it's down
+	// to 56ms
+	runFrom := func(min1, max1, min2, max2 int) {
+		for d1 := min1; d1 < max1; d1++ {
+			for d2 := min2; d2 < max2; d2++ {
+				p := d1 * d2
+				if p >= tenDigits {
+					break
+				}
+				digits := allDigits(p, d1, d2)
+				if isPandigital(digits) {
+					products[p] = struct{}{}
+				}
 			}
 		}
 	}
+
+	oneDigits := 1
+	twoDigits := 10
+	threeDigits := 100
+	fourDigits := 1000
+	fiveDigits := 10000
+
+	runFrom(
+		oneDigits, twoDigits,
+		fourDigits, fiveDigits,
+	)
+	runFrom(
+		twoDigits, threeDigits,
+		threeDigits, fourDigits,
+	)
 
 	sum := 0
 
