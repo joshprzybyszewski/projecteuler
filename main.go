@@ -39,8 +39,8 @@ func solve(puzzleNum int) {
 		easy.SolveProblem2()
 	case 3:
 		// takes a long time to generate the prime cache
-		easy.SolveProblem3()
-		// solved = false
+		// easy.SolveProblem3()
+		solved = false
 	case 4:
 		easy.SolveProblem4()
 	case 5:
@@ -55,8 +55,8 @@ func solve(puzzleNum int) {
 		easy.SolveProblem9()
 	case 10:
 		// takes a long time to find the first 2 million primes
-		easy.SolveProblem10()
-		// solved = false
+		// easy.SolveProblem10()
+		solved = false
 	case 11:
 		easy.SolveProblem11()
 	case 12:
@@ -83,8 +83,8 @@ func solve(puzzleNum int) {
 		easy.SolveProblem22()
 	case 23:
 		// takes a long time
-		easy.SolveProblem23()
-		// solved = false
+		// easy.SolveProblem23()
+		solved = false
 	case 24:
 		easy.SolveProblem24()
 	case 25:
@@ -108,8 +108,10 @@ func solve(puzzleNum int) {
 	case 34:
 		easy.SolveProblem34()
 	case 35:
-		easy.SolveProblem35()
-	// TEMPLATE_MARKER //
+		// gotta build the prime cache here too...
+		// easy.SolveProblem35()
+		solved = false
+		// TEMPLATE_MARKER //
 	case 67:
 		easy.SolveProblem67()
 	default:

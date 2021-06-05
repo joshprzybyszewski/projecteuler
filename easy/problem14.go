@@ -27,10 +27,12 @@ func SolveProblem14() {
 	fmt.Printf("Problem 14 Answer: %v (len of %d)\n", ans, ansLen)
 }
 
-func longestCollatzChain(maxStart int) (int, int) {
-	best, bestLen := 0, 0
+func longestCollatzChain(maxStart int) (int, uint) {
+	ccc := newCollatzChainCache(maxStart)
+
+	best, bestLen := 0, uint(0)
 	for i := 1; i <= maxStart; i++ {
-		myLen := collatzChainLen(i, 1)
+		myLen := ccc.collatzChainLen(i)
 		if myLen > bestLen {
 			best = i
 			bestLen = myLen
@@ -39,12 +41,38 @@ func longestCollatzChain(maxStart int) (int, int) {
 	return best, bestLen
 }
 
-func collatzChainLen(n int, steps int) int {
-	if n <= 1 {
-		return steps
+type collatzChainCache struct {
+	cache []uint
+}
+
+func newCollatzChainCache(max int) *collatzChainCache {
+	return &collatzChainCache{
+		cache: make([]uint, max+1),
 	}
-	if utils.IsEven(n) {
-		return collatzChainLen(n/2, steps+1)
+}
+
+func (ccc *collatzChainCache) collatzChainLen(
+	n int,
+) uint {
+
+	if n < len(ccc.cache) && ccc.cache[n] > 0 {
+		return ccc.cache[n]
 	}
-	return collatzChainLen((3*n)+1, steps+1)
+
+	var res uint
+
+	switch {
+	case n <= 1:
+		res = 1
+	case utils.IsEven(n):
+		res = ccc.collatzChainLen(n/2) + 1
+	default:
+		res = ccc.collatzChainLen((3*n)+1) + 1
+	}
+
+	if n < len(ccc.cache) {
+		ccc.cache[n] = res
+	}
+
+	return res
 }

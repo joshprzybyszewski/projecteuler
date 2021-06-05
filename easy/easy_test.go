@@ -71,7 +71,7 @@ func TestLongestCollatzChain(t *testing.T) {
 	// 16 ->  8 ->  4 ->  2 ->  1
 	best, bestLen := longestCollatzChain(16)
 	assert.Equal(t, 9, best)
-	assert.Equal(t, 20, bestLen)
+	assert.Equal(t, uint(20), bestLen)
 }
 
 func TestGetSumOfTwoToThePower(t *testing.T) {
