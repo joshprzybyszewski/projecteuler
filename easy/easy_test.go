@@ -439,7 +439,9 @@ func TestGetAllTrickyFractions(t *testing.T) {
 	ns, ds := getAllTrickyFractions()
 	assert.Len(t, ns, 4)
 	assert.Len(t, ds, 4)
+}
 
-	assert.Empty(t, ns)
-	assert.Empty(t, ds)
+func TestIsSumOfFactorialsOfDigits(t *testing.T) {
+	assert.True(t, isSumOfFactorialsOfDigits(145))
+	assert.False(t, isSumOfFactorialsOfDigits(31))
 }
