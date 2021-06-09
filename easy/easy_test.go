@@ -9,6 +9,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 	"github.com/joshprzybyszewski/projecteuler/utils"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestLargestPalindromeInRange(t *testing.T) {
@@ -525,4 +526,60 @@ func TestIsRightAngleTriangle(t *testing.T) {
 
 func TestGetNumberRightAngleTrianglesWithPerimeter(t *testing.T) {
 	assert.Equal(t, 3, getNumberRightAngleTrianglesWithPerimeter(120))
+}
+
+func TestGetNumberRepresentedAtChampernowneDigit(t *testing.T) {
+	rep := 1
+
+	n := 1
+	expIndex := 0
+	expIndexMax := func(rep int) int {
+		switch {
+		case rep > 100000:
+			// unsupported
+			return -1
+		case rep >= 10000:
+			return 5
+		case rep >= 1000:
+			return 4
+		case rep >= 100:
+			return 3
+		case rep >= 10:
+			return 2
+		case rep > 0:
+			return 1
+		default:
+			return 0
+		}
+	}
+
+	for rep < 100000 {
+		actRep, index := getNumberRepresentedAtChampernowneDigit(n)
+		require.Equal(t,
+			rep,
+			actRep,
+			`unexpected result for getNumberRepresentedAtChampernowneDigit(%d): represents %d`,
+			n, rep,
+		)
+		require.Equal(t,
+			expIndex,
+			index,
+			`unexpected result for getNumberRepresentedAtChampernowneDigit(%d): represents %d`,
+			n, rep,
+		)
+
+		require.Equal(t,
+			mathUtils.ToDigits(rep)[expIndex],
+			getChampernowneDigit(n),
+			`unexpected result for getChampernowneDigit(%d): represents %d`,
+			n, rep,
+		)
+
+		n++
+		expIndex++
+		if expIndex == expIndexMax(rep) {
+			expIndex = 0
+			rep++
+		}
+	}
 }
