@@ -516,3 +516,13 @@ func TestGetNTruncatablePrimes(t *testing.T) {
 	tpc.populate()
 	assert.Equal(t, truncatable, tpc.get())
 }
+
+func TestIsRightAngleTriangle(t *testing.T) {
+	assert.True(t, isRightAngleTriangle(20, 48, 52))
+	assert.True(t, isRightAngleTriangle(24, 45, 51))
+	assert.True(t, isRightAngleTriangle(30, 40, 50))
+}
+
+func TestGetNumberRightAngleTrianglesWithPerimeter(t *testing.T) {
+	assert.Equal(t, 3, getNumberRightAngleTrianglesWithPerimeter(120))
+}
