@@ -79,7 +79,11 @@ func allDigits(s ...int) []int {
 }
 
 func isPandigital(all []int) bool {
-	if len(all) != 9 {
+	return isNPandigital(all, 9)
+}
+
+func isNPandigital(all []int, n int) bool {
+	if len(all) != n {
 		return false
 	}
 	sort.Ints(all)

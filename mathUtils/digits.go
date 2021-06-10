@@ -27,9 +27,6 @@ func ToDigits(n int) []int {
 		res[len(res)-1-i] = tmp[i]
 	}
 	return res
-
-	// str := strconv.Itoa(n)
-	// return StringToDigits(str)
 }
 
 func StringToDigits(str string) []int {

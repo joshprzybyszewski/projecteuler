@@ -123,6 +123,10 @@ func solve(puzzleNum int) {
 		easy.SolveProblem39()
 	case 40:
 		easy.SolveProblem40()
+	case 41:
+		// takes a long time because it generates a ton of primes
+		// easy.SolveProblem41()
+		solved = false
 		// TEMPLATE_MARKER //
 	case 67:
 		easy.SolveProblem67()
