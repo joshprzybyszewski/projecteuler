@@ -583,3 +583,21 @@ func TestGetNumberRepresentedAtChampernowneDigit(t *testing.T) {
 		}
 	}
 }
+
+func TestIsTriangleNumber(t *testing.T) {
+	assert.True(t, isTriangleNumber(1))
+	assert.True(t, isTriangleNumber(3))
+	assert.True(t, isTriangleNumber(6))
+	assert.True(t, isTriangleNumber(10))
+	assert.True(t, isTriangleNumber(15))
+	assert.True(t, isTriangleNumber(21))
+	assert.True(t, isTriangleNumber(28))
+	assert.True(t, isTriangleNumber(36))
+	assert.True(t, isTriangleNumber(45))
+	assert.True(t, isTriangleNumber(55))
+
+	assert.False(t, isTriangleNumber(24))
+	assert.False(t, isTriangleNumber(34))
+	assert.False(t, isTriangleNumber(44))
+	assert.False(t, isTriangleNumber(54))
+}
