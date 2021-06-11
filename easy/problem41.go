@@ -23,7 +23,7 @@ func getLargestPandigitalPrime() int {
 	for i := len(ps) - 1; i > 0; i-- {
 		p := ps[i]
 		digits := mathUtils.ToDigits(p)
-		if isNPandigital(digits, len(digits)) {
+		if mathUtils.IsNPandigital(digits, len(digits)) {
 			return p
 		}
 	}

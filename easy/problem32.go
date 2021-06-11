@@ -2,7 +2,6 @@ package easy
 
 import (
 	"fmt"
-	"sort"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
@@ -39,7 +38,7 @@ func getSumOfAllPandigitalNumbers() int {
 					break
 				}
 				digits := allDigits(p, d1, d2)
-				if isPandigital(digits) {
+				if mathUtils.IsNPandigital(digits, 9) {
 					products[p] = struct{}{}
 				}
 			}
@@ -76,23 +75,4 @@ func allDigits(s ...int) []int {
 		all = append(all, mathUtils.ToDigits(e)...)
 	}
 	return all
-}
-
-func isPandigital(all []int) bool {
-	return isNPandigital(all, 9)
-}
-
-func isNPandigital(all []int, n int) bool {
-	if len(all) != n {
-		return false
-	}
-	sort.Ints(all)
-
-	for i := range all {
-		if all[i] != i+1 {
-			return false
-		}
-	}
-
-	return true
 }

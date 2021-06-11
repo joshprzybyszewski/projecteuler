@@ -601,3 +601,9 @@ func TestIsTriangleNumber(t *testing.T) {
 	assert.False(t, isTriangleNumber(44))
 	assert.False(t, isTriangleNumber(54))
 }
+
+func TestIsProblem43Property(t *testing.T) {
+	assert.False(t, isProblem43Property(nil))
+
+	assert.True(t, isProblem43Property([]int{1, 4, 0, 6, 3, 5, 7, 2, 8, 9}))
+}

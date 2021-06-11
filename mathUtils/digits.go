@@ -29,6 +29,18 @@ func ToDigits(n int) []int {
 	return res
 }
 
+func DigitsToInt(digits []int) int {
+	if len(digits) == 0 {
+		return 0
+	}
+	total := 0
+	for _, d := range digits {
+		total *= 10
+		total += d
+	}
+	return total
+}
+
 func StringToDigits(str string) []int {
 	res := make([]int, len(str))
 	for i := 0; i < len(str); i++ {
