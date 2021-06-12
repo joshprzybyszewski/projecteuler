@@ -7,7 +7,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
-func SolveProblem24() {
+func SolveProblem24() string {
 	/*
 		A permutation is an ordered arrangement of objects.
 		For example, 3124 is one possible permutation of the
@@ -22,7 +22,7 @@ func SolveProblem24() {
 		of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 	*/
 	ans := getLexicographicPermutationAtIndex(0, 9, 1000000)
-	fmt.Printf("Problem 24 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getLexicographicPermutationAtIndex(

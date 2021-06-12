@@ -18,14 +18,14 @@ func populateProblem13() {
 	}
 }
 
-func SolveProblem13() {
+func SolveProblem13() string {
 	populateProblem13()
 	/*
 		Work out the first ten digits of the sum of the following
 		one-hundred 50-digit numbers.
 	*/
 	ans := getFirst10DigitsOfSum(problem13Grid)
-	fmt.Printf("Problem 13 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getFirst10DigitsOfSum(

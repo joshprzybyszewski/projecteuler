@@ -6,10 +6,10 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
-func SolveProblem2() {
+func SolveProblem2() string {
 	// mathUtils.Sum(sequence.FibonaccisBelow(4000000))
 	sum := sumOfEvenFibonaccisBelow(4000000)
-	fmt.Printf("Problem 2 Answer: %d\n", sum)
+	return fmt.Sprintf("%d", sum)
 }
 
 func sumOfEvenFibonaccisBelow(max int) int {

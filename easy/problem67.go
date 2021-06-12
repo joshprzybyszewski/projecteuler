@@ -12,7 +12,7 @@ const (
 	problem67TriangleFileName = `easy/p067_triangle.txt`
 )
 
-func SolveProblem67() {
+func SolveProblem67() string {
 	/*
 		Find the maximum total from top to bottom in
 		triangle.txt (right click and 'Save Link/Target As...'),
@@ -30,5 +30,5 @@ func SolveProblem67() {
 	}
 	res := collapseMaxesDownTriangle(tri)
 	ans := mathUtils.MaxInSlice(res)
-	fmt.Printf("Problem 67 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }

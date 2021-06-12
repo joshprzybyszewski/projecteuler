@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem7() {
+func SolveProblem7() string {
 	/*
 		By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13,
 		we can see that the 6th prime is 13.
@@ -14,7 +14,7 @@ func SolveProblem7() {
 		What is the 10 001st prime number?
 	*/
 	ans := getNthPrime(10001)
-	fmt.Printf("Problem 7 Answer: %d\n", ans)
+	return fmt.Sprintf("%d", ans)
 }
 
 func getNthPrime(n int) int {

@@ -7,7 +7,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
-func SolveProblem34() {
+func SolveProblem34() string {
 	/*
 		145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.
 
@@ -15,7 +15,7 @@ func SolveProblem34() {
 		of the factorial of their digits.
 	*/
 	ans := getProblem34Answer()
-	fmt.Printf("Problem 34 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getProblem34Answer() int {

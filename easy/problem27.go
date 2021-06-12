@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem27() {
+func SolveProblem27() string {
 	/*
 		Euler discovered the remarkable quadratic formula:
 			n^2 + n + 41
@@ -33,7 +33,7 @@ func SolveProblem27() {
 		of n, starting with n=0.
 	*/
 	ans := getProblem27Answer()
-	fmt.Printf("Problem 27 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getProblem27Answer() int {

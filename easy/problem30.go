@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
-func SolveProblem30() {
+func SolveProblem30() string {
 	/*
 		Surprisingly there are only three numbers that can
 		be written as the sum of fourth powers of their digits:
@@ -23,7 +23,7 @@ func SolveProblem30() {
 		as the sum of fifth powers of their digits.
 	*/
 	ans := solveProblem30()
-	fmt.Printf("Problem 30 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func solveProblem30() int {

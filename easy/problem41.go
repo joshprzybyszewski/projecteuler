@@ -7,12 +7,12 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem41() {
+func SolveProblem41() string {
 	/*
 		What is the largest n-digit pandigital prime that exists?
 	*/
 	ans := getLargestPandigitalPrime()
-	fmt.Printf("Problem 41 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getLargestPandigitalPrime() int {

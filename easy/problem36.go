@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
-func SolveProblem36() {
+func SolveProblem36() string {
 	/*
 		The decimal number, 585 = 0x1001001001 (binary),
 		is palindromic in both bases.
@@ -15,7 +15,7 @@ func SolveProblem36() {
 		which are palindromic in base 10 and base 2.
 	*/
 	ans := sumOfAllDoublePalindromes(1000000)
-	fmt.Printf("Problem 36 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func sumOfAllDoublePalindromes(max int) int {

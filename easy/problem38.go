@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func SolveProblem38() {
+func SolveProblem38() string {
 	/*
 		What is the largest 1 to 9 pandigital 9-digit number
 		that can be formed as the concatenated product of an
@@ -27,5 +27,5 @@ func SolveProblem38() {
 	// We know D = (2B)%10, so that means either D=4 && B=(2|7) OR
 	// D=2 && B=6.
 	ans := `932718654`
-	fmt.Printf("Problem 38 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }

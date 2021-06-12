@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
-func SolveProblem15() {
+func SolveProblem15() string {
 	/*
 		Starting in the top left corner of a 2×2 grid, and only
 		being able to move to the right and down, there are
@@ -15,7 +15,7 @@ func SolveProblem15() {
 		How many such routes are there through a 20×20 grid?
 	*/
 	ans := getDownRightRoutesInGrid(20)
-	fmt.Printf("Problem 15 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getDownRightRoutesInGrid(n int) int {

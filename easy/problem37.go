@@ -8,7 +8,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem37() {
+func SolveProblem37() string {
 	/*
 		Find the sum of the only eleven primes that are both
 		truncatable from left to right and right to left.
@@ -17,7 +17,7 @@ func SolveProblem37() {
 	tpc.populate()
 	all := tpc.get()
 	ans := mathUtils.Sum(all)
-	fmt.Printf("Problem 37 Answer: %v = sum(%v)\n", ans, all)
+	return fmt.Sprintf("%v = sum(%v)", ans, all)
 }
 
 type truncatablePrimesCache struct {

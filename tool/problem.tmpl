@@ -4,16 +4,16 @@ import (
 	"fmt"
 )
 
-func SolveProblem{{.Number}}() {
+func SolveProblem{{.Number}}() string {
 	/*
-	{{.Prompt}}
-	 */
+		{{.Prompt}}
+	*/
 	ans := `TODO`
-	fmt.Printf("Problem {{.Number}} Answer: %v\n", ans)
+	fmt.Sprintf("%v", ans)
 }
 
 {{ end }}
 
 {{ define "caseForMainSolver" }}	case {{.Number}}:
-		easy.SolveProblem{{.Number}}()
+		s.answer = easy.SolveProblem{{.Number}}()
 {{ end }}

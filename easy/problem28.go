@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
-func SolveProblem28() {
+func SolveProblem28() string {
 	/*
 		Starting with the number 1 and moving to the right in
 		a clockwise direction a 5 by 5 spiral is formed as follows:
@@ -25,7 +25,7 @@ func SolveProblem28() {
 		1001 by 1001 spiral formed in the same way?
 	*/
 	ans := getSumOfProblem28Spiral(1001)
-	fmt.Printf("Problem 28 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getSumOfProblem28Spiral(n int) int {

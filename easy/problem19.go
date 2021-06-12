@@ -4,13 +4,13 @@ import (
 	"fmt"
 )
 
-func SolveProblem19() {
+func SolveProblem19() string {
 	/*
 		How many Sundays fell on the first of the month
 		during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 	*/
 	ans := getSundaysOnFirstOfMonths(1901, 2000)
-	fmt.Printf("Problem 19 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getSundaysOnFirstOfMonths(startYear, endYear int) int {

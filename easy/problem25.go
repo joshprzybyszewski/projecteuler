@@ -7,7 +7,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/sequence"
 )
 
-func SolveProblem25() {
+func SolveProblem25() string {
 	/*
 		The Fibonacci sequence is defined by the recurrence relation:
 
@@ -32,7 +32,7 @@ func SolveProblem25() {
 		What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
 	*/
 	ans := getBigFibonacciIndexWithNDigits(1000)
-	fmt.Printf("Problem 25 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getBigFibonacciIndexWithNDigits(n int) uint {

@@ -2,7 +2,7 @@ package easy
 
 import "fmt"
 
-func SolveProblem1() {
+func SolveProblem1() string {
 	/*
 		If we list all the natural numbers below 10 that are multiples
 		of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
@@ -10,7 +10,7 @@ func SolveProblem1() {
 		Find the sum of all the multiples of 3 or 5 below 1000.
 	*/
 	sum := sumOf3sAnd5sBelow(1000)
-	fmt.Printf("Problem 1 Answer: %d\n", sum)
+	return fmt.Sprintf("%d", sum)
 }
 
 func sumOf3sAnd5sBelow(max int) int {

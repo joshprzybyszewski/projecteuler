@@ -29,7 +29,7 @@ var (
 	}
 )
 
-func SolveProblem11() {
+func SolveProblem11() string {
 	/*
 		n the 20×20 grid below, four numbers along a diagonal line have been marked in red.
 
@@ -59,7 +59,7 @@ func SolveProblem11() {
 		What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 	*/
 	ans := greatestProductInGrid(problem11grid, 4)
-	fmt.Printf("Problem 11 Answer: %d\n", ans)
+	return fmt.Sprintf("%d", ans)
 }
 
 func greatestProductInGrid(

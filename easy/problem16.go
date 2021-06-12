@@ -4,13 +4,13 @@ import (
 	"fmt"
 )
 
-func SolveProblem16() {
+func SolveProblem16() string {
 	/*
 		2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
 		What is the sum of the digits of the number 2^1000?
 	*/
 	ans := getSumOfTwoToThePower(1000)
-	fmt.Printf("Problem 16 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getSumOfTwoToThePower(power int) int {

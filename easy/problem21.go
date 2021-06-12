@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
-func SolveProblem21() {
+func SolveProblem21() string {
 	/*
 		Let d(n) be defined as the sum of proper
 		divisors of n (numbers less than n which
@@ -24,7 +24,7 @@ func SolveProblem21() {
 		Evaluate the sum of all the amicable numbers under 10000.
 	*/
 	ans := sumOfAmicableNumbers(10000)
-	fmt.Printf("Problem 21 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func sumOfAmicableNumbers(limit int) int {

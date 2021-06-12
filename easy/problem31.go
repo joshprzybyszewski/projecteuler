@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func SolveProblem31() {
+func SolveProblem31() string {
 	/*
 		In the United Kingdom the currency is made up
 		of pound (£) and pence (p). There are eight
@@ -21,7 +21,7 @@ func SolveProblem31() {
 		1, 2, 5, 10, 20, 50, 100, 200,
 	}
 	ans := waysToBuildSum(200, coins)
-	fmt.Printf("Problem 31 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func waysToBuildSum(

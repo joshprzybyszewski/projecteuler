@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
-func SolveProblem32() {
+func SolveProblem32() string {
 	/*
 		We shall say that an n-digit number is pandigital if it makes
 		use of all the digits 1 to n exactly once; for example, the
@@ -19,7 +19,7 @@ func SolveProblem32() {
 		identity can be written as a 1 through 9 pandigital.
 	*/
 	ans := getSumOfAllPandigitalNumbers()
-	fmt.Printf("Problem 32 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getSumOfAllPandigitalNumbers() int {

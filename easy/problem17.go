@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func SolveProblem17() {
+func SolveProblem17() string {
 	/*
 		If the numbers 1 to 5 are written out in words:
 		one, two, three, four, five, then there
@@ -22,7 +22,7 @@ func SolveProblem17() {
 			British usage.
 	*/
 	ans := totalLettersFromOneToAThousand()
-	fmt.Printf("Problem 17 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func totalLettersFromOneToAThousand() int {

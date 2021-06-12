@@ -15,7 +15,7 @@ func populateProblem8() {
 	problem8Digits = mathUtils.StringToDigits(problem8Number)
 }
 
-func SolveProblem8() {
+func SolveProblem8() string {
 	populateProblem8()
 	/*
 		The four adjacent digits in the 1000-digit number that have the
@@ -47,7 +47,7 @@ func SolveProblem8() {
 	*/
 
 	ans := findGreatestRollingProduct(problem8Digits, 13)
-	fmt.Printf("Problem 8 Answer: %d\n", ans)
+	return fmt.Sprintf("%d", ans)
 }
 
 func findGreatestRollingProduct(

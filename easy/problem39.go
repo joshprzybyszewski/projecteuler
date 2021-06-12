@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func SolveProblem39() {
+func SolveProblem39() string {
 	/*
 		If p is the perimeter of a right angle triangle with integral
 		length sides, {a,b,c}, there are exactly three solutions for p = 120.
@@ -14,7 +14,7 @@ func SolveProblem39() {
 		For which value of p ≤ 1000, is the number of solutions maximised?
 	*/
 	ans := getPerimeterWithMaxNumberTrianglesBelow(1001)
-	fmt.Printf("Problem 39 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getPerimeterWithMaxNumberTrianglesBelow(maxPerimeter int) int {

@@ -7,12 +7,12 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem35() {
+func SolveProblem35() string {
 	/*
 		How many circular primes are there below one million?
 	*/
 	ans := getNumberOfCircularPrimesBelow(1000000)
-	fmt.Printf("Problem 35 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getNumberOfCircularPrimesBelow(max int) int {

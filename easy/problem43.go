@@ -7,7 +7,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem43() {
+func SolveProblem43() string {
 	/*
 		The number, 1406357289, is a 0 to 9 pandigital number
 		because it is made up of each of the digits 0 to 9 in
@@ -28,7 +28,7 @@ func SolveProblem43() {
 		Find the sum of all 0 to 9 pandigital numbers with this property.
 	*/
 	ans := getSumOfAllProblem43PropertyNumbers()
-	fmt.Printf("Problem 43 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getSumOfAllProblem43PropertyNumbers() int {

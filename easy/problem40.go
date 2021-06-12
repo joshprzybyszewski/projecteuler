@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
-func SolveProblem40() {
+func SolveProblem40() string {
 	/*
 		An irrational decimal fraction is created by concatenating
 		the positive integers:
@@ -22,7 +22,7 @@ func SolveProblem40() {
 		d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000
 	*/
 	ans := getProblem40Answer()
-	fmt.Printf("Problem 40 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getProblem40Answer() int {

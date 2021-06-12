@@ -8,7 +8,7 @@ const (
 	mantissaLimitMultiplier = 5
 )
 
-func SolveProblem26() {
+func SolveProblem26() string {
 	/*
 		A unit fraction contains 1 in the numerator. The decimal
 		representation of the unit fractions with denominators
@@ -31,7 +31,7 @@ func SolveProblem26() {
 		recurring cycle in its decimal fraction part.
 	*/
 	ans := getMaxCycleLengthOfDivisors(1000)
-	fmt.Printf("Problem 26 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getMaxCycleLengthOfDivisors(

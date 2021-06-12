@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
-func SolveProblem14() {
+func SolveProblem14() string {
 	/*
 		The following iterative sequence is defined for the set of positive integers:
 
@@ -24,7 +24,7 @@ func SolveProblem14() {
 		Which starting number, under one million, produces the longest chain?
 	*/
 	ans, ansLen := longestCollatzChain(1000000)
-	fmt.Printf("Problem 14 Answer: %v (len of %d)\n", ans, ansLen)
+	return fmt.Sprintf("%v (len of %d)", ans, ansLen)
 }
 
 func longestCollatzChain(maxStart int) (int, uint) {

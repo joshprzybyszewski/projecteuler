@@ -8,7 +8,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem20() {
+func SolveProblem20() string {
 	/*
 		Find the sum of the digits in the number 100!
 	*/
@@ -16,7 +16,7 @@ func SolveProblem20() {
 	factors = remove10s(factors)
 	product := mathUtils.BigProduct(factors)
 	ans := mathUtils.Sum(mathUtils.StringToDigits(product.String()))
-	fmt.Printf("Problem 20 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getPrimeFactorialFactors(bang int) []int {

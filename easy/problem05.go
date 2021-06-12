@@ -6,7 +6,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem5() {
+func SolveProblem5() string {
 	/*
 		2520 is the smallest number
 		that can be divided by each of the numbers
@@ -16,7 +16,7 @@ func SolveProblem5() {
 		evenly divisible by all of the numbers from 1 to 20?
 	*/
 	p := smallestDivisibleByRange(20)
-	fmt.Printf("Problem 5 Answer: %d\n", p)
+	return fmt.Sprintf("%d", p)
 }
 
 func smallestDivisibleByRange(n int) int {

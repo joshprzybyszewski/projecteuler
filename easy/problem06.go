@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func SolveProblem6() {
+func SolveProblem6() string {
 	/*
 		The sum of the squares of the first ten natural numbers is,
 			1^2 + 2^2 + ... + 10^2 = 385
@@ -21,7 +21,7 @@ func SolveProblem6() {
 	s1 := squareOfSum(n)
 	s2 := sumOfSquares(n)
 	ans := s1 - s2
-	fmt.Printf("Problem 6 Answer: %d = %d - %d\n", ans, s1, s2)
+	return fmt.Sprintf("%d = %d - %d", ans, s1, s2)
 }
 
 func sumOfSquares(n int) int {

@@ -26,7 +26,7 @@ var (
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23`
 )
 
-func SolveProblem18() {
+func SolveProblem18() string {
 	/*
 				By starting at the top of the triangle below
 				and moving to adjacent numbers on the row below,
@@ -66,7 +66,7 @@ func SolveProblem18() {
 	tri := convertTriangleToSlices(problem18Triangle)
 	res := collapseMaxesDownTriangle(tri)
 	ans := mathUtils.MaxInSlice(res)
-	fmt.Printf("Problem 18 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func convertTriangleToSlices(str string) [][]int {

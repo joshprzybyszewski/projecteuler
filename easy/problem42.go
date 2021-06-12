@@ -11,7 +11,7 @@ const (
 	problem42TriangleFileName = `easy/p042_words.txt`
 )
 
-func SolveProblem42() {
+func SolveProblem42() string {
 	/*
 		The nth term of the sequence of triangle numbers is
 		given by, tn = ½n(n+1); so the first ten triangle
@@ -24,7 +24,7 @@ func SolveProblem42() {
 	*/
 	words := getProbelm42Words()
 	ans := getCountOfTriangleWords(words)
-	fmt.Printf("Problem 42 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getProbelm42Words() []string {

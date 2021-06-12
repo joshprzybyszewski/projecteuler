@@ -17,7 +17,7 @@ const (
 	capZByte   = byte('Z')
 )
 
-func SolveProblem22() {
+func SolveProblem22() string {
 	/*
 		Using names.txt (right click and 'Save Link/Target As...'),
 		a 46K text file containing over five-thousand first names,
@@ -37,7 +37,7 @@ func SolveProblem22() {
 	names := getProblem22Names()
 
 	ans := getProblem22Answer(names)
-	fmt.Printf("Problem 22 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getProblem22Names() []string {

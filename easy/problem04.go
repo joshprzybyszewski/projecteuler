@@ -7,7 +7,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
-func SolveProblem4() {
+func SolveProblem4() string {
 	/*
 		A palindromic number reads the same both ways.
 		The largest palindrome made from the product of two
@@ -16,7 +16,7 @@ func SolveProblem4() {
 		Find the largest palindrome made from the product of two 3-digit numbers.
 	*/
 	p := largestPalindromeInRange(100, 1000)
-	fmt.Printf("Problem 4 Answer: %d\n", p)
+	return fmt.Sprintf("%d", p)
 }
 
 func largestPalindromeInRange(min, max int) int {

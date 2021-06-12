@@ -7,7 +7,7 @@ import (
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
-func SolveProblem33() {
+func SolveProblem33() string {
 	/*
 		The fraction 49/98 is a curious fraction, as an inexperienced
 		mathematician in attempting to simplify it may incorrectly
@@ -24,7 +24,7 @@ func SolveProblem33() {
 		common terms, find the value of the denominator.
 	*/
 	ans := getProblem33Answer()
-	fmt.Printf("Problem 33 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getProblem33Answer() int {

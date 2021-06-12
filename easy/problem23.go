@@ -12,7 +12,7 @@ const (
 	deficient perfectNumberState = 3
 )
 
-func SolveProblem23() {
+func SolveProblem23() string {
 	/*
 		A perfect number is a number for which the sum of its proper divisors
 		is exactly equal to the number. For example, the sum of the proper
@@ -37,7 +37,7 @@ func SolveProblem23() {
 	limit := 28124
 	abundantNumbers := allAbundantNumbersBelow(limit)
 	ans := getSumOfAllNonAbundantSumNumbersBelow(limit, abundantNumbers)
-	fmt.Printf("Problem 23 Answer: %v\n", ans)
+	return fmt.Sprintf("%v", ans)
 }
 
 func getSumOfAllNonAbundantSumNumbersBelow(

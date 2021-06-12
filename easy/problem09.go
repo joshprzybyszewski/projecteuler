@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func SolveProblem9() {
+func SolveProblem9() string {
 	/*
 		A Pythagorean triplet is a set of three natural
 		numbers, a < b < c, for which,
@@ -16,7 +16,7 @@ func SolveProblem9() {
 		Find the product abc.
 	*/
 	a, b, c := getThousandPythagoreanTriplet()
-	fmt.Printf("Problem 9 Answer: %d = %d * %d * %d\n", a*b*c, a, b, c)
+	return fmt.Sprintf("%d = %d * %d * %d", a*b*c, a, b, c)
 }
 
 func getThousandPythagoreanTriplet() (int, int, int) {
