@@ -2,6 +2,7 @@ package easy
 
 import (
 	"fmt"
+	"log"
 )
 
 func SolveProblem6() string {
@@ -21,7 +22,8 @@ func SolveProblem6() string {
 	s1 := squareOfSum(n)
 	s2 := sumOfSquares(n)
 	ans := s1 - s2
-	return fmt.Sprintf("%d = %d - %d", ans, s1, s2)
+	log.Printf("Problem 6: %d = %d - %d", ans, s1, s2)
+	return fmt.Sprintf("%d", ans)
 }
 
 func sumOfSquares(n int) int {

@@ -2,6 +2,7 @@ package easy
 
 import (
 	"fmt"
+	"log"
 )
 
 func SolveProblem9() string {
@@ -16,7 +17,8 @@ func SolveProblem9() string {
 		Find the product abc.
 	*/
 	a, b, c := getThousandPythagoreanTriplet()
-	return fmt.Sprintf("%d = %d * %d * %d", a*b*c, a, b, c)
+	log.Printf("Problem 9: %d = %d * %d * %d", a*b*c, a, b, c)
+	return fmt.Sprintf("%d", a*b*c)
 }
 
 func getThousandPythagoreanTriplet() (int, int, int) {

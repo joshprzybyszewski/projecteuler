@@ -2,6 +2,7 @@ package easy
 
 import (
 	"fmt"
+	"log"
 	"sort"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
@@ -17,7 +18,8 @@ func SolveProblem37() string {
 	tpc.populate()
 	all := tpc.get()
 	ans := mathUtils.Sum(all)
-	return fmt.Sprintf("%v = sum(%v)", ans, all)
+	log.Printf("Problem 37: %v = sum(%v)", ans, all)
+	return fmt.Sprintf("%v", ans)
 }
 
 type truncatablePrimesCache struct {
