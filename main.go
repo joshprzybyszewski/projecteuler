@@ -224,7 +224,9 @@ func solve(
 	case 43:
 		s.answer = easy.SolveProblem43()
 	case 44:
-		s.answer = easy.SolveProblem44()
+		// I'm not clever enough to tell you why this takes so long
+		// s.answer = easy.SolveProblem44()
+		s.solved = false
 	case 45:
 		s.answer = easy.SolveProblem45()
 	case 46:

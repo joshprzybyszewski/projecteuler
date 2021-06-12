@@ -589,3 +589,16 @@ func TestIsProblem43Property(t *testing.T) {
 
 	assert.True(t, isProblem43Property([]int{1, 4, 0, 6, 3, 5, 7, 2, 8, 9}))
 }
+
+func TestIsGoldbachOtherConjectureCounterExample(t *testing.T) {
+	assert.False(t, isGoldbachOtherConjectureCounterExample(9))
+	assert.False(t, isGoldbachOtherConjectureCounterExample(15))
+	assert.False(t, isGoldbachOtherConjectureCounterExample(21))
+	assert.False(t, isGoldbachOtherConjectureCounterExample(25))
+	assert.False(t, isGoldbachOtherConjectureCounterExample(27))
+	assert.False(t, isGoldbachOtherConjectureCounterExample(33))
+
+	// not a composite (it's a prime)
+	assert.False(t, isGoldbachOtherConjectureCounterExample(11))
+
+}
