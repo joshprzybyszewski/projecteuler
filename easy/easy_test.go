@@ -615,3 +615,12 @@ func TestGetNumDistinctPrimeFactors(t *testing.T) {
 	assert.Equal(t, 3, getNumDistinctPrimeFactors(645))
 	assert.Equal(t, 3, getNumDistinctPrimeFactors(646))
 }
+
+func TestIsPermutation(t *testing.T) {
+	assert.False(t, isPermutation([]int{1, 2, 3}, nil))
+	assert.False(t, isPermutation([]int{1, 2, 3}, []int{2, 2, 1}))
+	assert.False(t, isPermutation([]int{1, 2, 3}, []int{3, 0, 1}))
+
+	assert.True(t, isPermutation([]int{1, 2, 3}, []int{2, 3, 1}))
+	assert.True(t, isPermutation([]int{1, 2, 3}, []int{1, 2, 3}))
+}
