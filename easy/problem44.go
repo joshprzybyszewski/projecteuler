@@ -2,7 +2,6 @@ package easy
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/joshprzybyszewski/projecteuler/sequence"
 )
@@ -30,13 +29,11 @@ func SolveProblem44() string {
 func getProblem44Answer() int {
 	for d := uint(1000); ; d++ {
 		pd := sequence.Pentagonal.GetNth(d)
-		log.Printf("Checking d = %d, pd = %d\n", d, pd)
 		shouldBreakK := false
 		for k := uint(1); !shouldBreakK; k++ {
-			pk := sequence.Pentagonal.GetNth(k)
 			next := sequence.Pentagonal.GetNth(k + 1)
+			pk := sequence.Pentagonal.GetNth(k)
 			if pd < next-pk {
-				log.Printf("\t Breaking at k = %d, pk = %d\n", k, pk)
 				shouldBreakK = true
 				continue
 			}

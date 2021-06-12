@@ -40,6 +40,7 @@ func newShapeSequenceCache(
 func (c *shapeSequenceCache) getNthFromCache(n uint) (int, bool) {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
+
 	i := int(n) - 1
 	if i < len(c.numbers) {
 		return c.numbers[i], true
@@ -49,18 +50,32 @@ func (c *shapeSequenceCache) getNthFromCache(n uint) (int, bool) {
 
 func (c *shapeSequenceCache) generateTo(
 	n uint,
+) {
+
+	c.lock.Lock()
+	defer c.lock.Unlock()
+
+	for gn := uint(len(c.numbers) + 1); gn <= n; gn++ {
+		next := c.generator.generate(gn)
+		c.numbers = append(c.numbers, next)
+	}
+}
+
+func (c *shapeSequenceCache) generatePast(
 	past int,
 ) {
 
 	c.lock.Lock()
 	defer c.lock.Unlock()
 
-	for gn := uint(len(c.numbers) + 1); n == 0 || gn <= n; gn++ {
-		next := c.generator.generate(gn)
+	var next int
+	if len(c.numbers) > 0 {
+		next = c.numbers[len(c.numbers)-1]
+	}
+
+	for gn := uint(len(c.numbers) + 1); next < past; gn++ {
+		next = c.generator.generate(gn)
 		c.numbers = append(c.numbers, next)
-		if past > 0 && next > past {
-			break
-		}
 	}
 }
 
@@ -69,7 +84,10 @@ func (c *shapeSequenceCache) GetNth(n uint) int {
 	if ok {
 		return v
 	}
-	c.generateTo(n, 0)
+	c.generateTo(n)
+
+	c.lock.RLock()
+	defer c.lock.RUnlock()
 
 	return c.numbers[n-1]
 }
@@ -97,12 +115,13 @@ func (c *shapeSequenceCache) Is(d int) bool {
 		return is
 	}
 
-	c.generateTo(0, d)
+	c.generatePast(d)
 	is, ok = c.isInCache(d)
 	if ok {
 		return is
 	}
 
+	panic(`max slice not implemented`)
 	c.lock.RLock()
 	start := len(c.numbers)
 	c.lock.RUnlock()
