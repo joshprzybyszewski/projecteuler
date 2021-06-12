@@ -11,7 +11,7 @@ import (
 var _ cacher = (*sliceCache)(nil)
 
 var (
-	maxSliceCacheSize = 1 << 31
+	maxSliceCacheSize = 1 << 16
 )
 
 type sliceCache struct {
@@ -167,13 +167,12 @@ func (m *sliceCache) knownBelow(max int) ([]int, bool) {
 	m.lock.RLock()
 	defer m.lock.RUnlock()
 
-	i := sort.Search(len(m.primes), func(i int) bool {
-		return m.primes[i] < max
+	numToCopy := sort.Search(len(m.primes), func(i int) bool {
+		return m.primes[i] >= max
 	})
-	numToCopy := i + 1
 
 	cpy := make([]int, numToCopy)
 	copy(cpy, m.primes)
 
-	return cpy, numToCopy <= len(m.primes)
+	return cpy, max < m.known
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"runtime"
 	"sort"
 	"strings"
@@ -93,6 +94,12 @@ func solve(puzzleNum int) solution {
 		num:    puzzleNum,
 		solved: true,
 	}
+	go func() {
+		<-time.After(5 * time.Second)
+		if s.answer == `` && s.solved {
+			log.Printf("Problem %d is taking a while", s.num)
+		}
+	}()
 
 	t0 := time.Now()
 

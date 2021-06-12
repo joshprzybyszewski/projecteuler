@@ -22,11 +22,9 @@ func TestCacherIs(t *testing.T) {
 }
 
 func TestCacherBelow(t *testing.T) {
-	defer func(prevMap, prevSlice int) {
-		maxMapCacheSize = prevMap
+	defer func(prevSlice int) {
 		maxSliceCacheSize = prevSlice
-	}(maxMapCacheSize, maxSliceCacheSize)
-	maxMapCacheSize = 3
+	}(maxSliceCacheSize)
 	maxSliceCacheSize = 3
 
 	cachers := getAllCachers()

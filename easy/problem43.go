@@ -34,7 +34,6 @@ func SolveProblem43() string {
 func getSumOfAllProblem43PropertyNumbers() int {
 	c := &problem43AnswerCache{}
 	c.populate()
-	fmt.Printf("\tFound: %+v\n", c.answers)
 
 	return mathUtils.Sum(c.answers)
 }
@@ -89,15 +88,24 @@ func (c *problem43AnswerCache) buildOption(cur, toPlace []int) {
 			continue
 		}
 
-		if i == 3 {
+		shouldNotPlace := false
+		switch i {
+		case 3:
 			// then the tp _must_ be divisible by 2
-			if tp%2 != 0 {
-				continue
+			shouldNotPlace = tp%2 != 0
+		case 4:
+			// the trio of numbers needs to be divisible
+			// by 3.
+			if cur[2] != 0 && cur[3] != 0 {
+				shouldNotPlace = (cur[2]+cur[3]+tp)%3 != 0
 			}
-		} else if i == 5 {
-			if tp != 0 && tp != 5 {
-				continue
-			}
+		case 5:
+			// only zero and 5 can be placed here (needs
+			// to be divisible by 5)
+			shouldNotPlace = tp != 0 && tp != 5
+		}
+		if shouldNotPlace {
+			continue
 		}
 
 		cpy := make([]int, len(cur))
