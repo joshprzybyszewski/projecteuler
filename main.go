@@ -116,17 +116,23 @@ type solution struct {
 	duration time.Duration
 }
 
-func solve(puzzleNum int) solution {
+func solve(
+	puzzleNum int,
+) solution {
+
 	s := solution{
 		num:    puzzleNum,
 		solved: true,
 	}
-	go func() {
-		<-time.After(5 * time.Second)
-		if s.answer == `` && s.solved {
+	done := make(chan struct{})
+	defer close(done)
+	go func(done <-chan struct{}) {
+		select {
+		case <-time.After(5 * time.Second):
 			log.Printf("Problem %d is taking a while", s.num)
+		case <-done:
 		}
-	}()
+	}(done)
 
 	t0 := time.Now()
 
