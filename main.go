@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 	"runtime"
 	"sort"
 	"strings"
@@ -54,7 +56,8 @@ func solveAll() {
 
 	var output string
 	numSolved, output = buildOutput(solutions)
-	fmt.Println(output)
+	writeOutputOfSolutions(output)
+	fmt.Print(output)
 }
 
 func buildOutput(solutions []solution) (int, string) {
@@ -71,6 +74,24 @@ func buildOutput(solutions []solution) (int, string) {
 		sb.WriteString(fmt.Sprintf("|%d|%s|%s|\n", s.num, s.answer, s.duration))
 	}
 	return numSolved, sb.String()
+}
+
+func writeOutputOfSolutions(fileString string) {
+	answerFile, err := os.Create(`answers.md`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer answerFile.Close()
+	w := bufio.NewWriter(answerFile)
+	_, err = w.WriteString(fileString)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = w.Flush()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func work(
@@ -203,6 +224,13 @@ func solve(puzzleNum int) solution {
 
 	if s.solved {
 		s.duration = time.Since(t0)
+		if s.duration > time.Second {
+			s.duration = s.duration.Truncate(time.Millisecond)
+		} else if s.duration > time.Millisecond {
+			s.duration = s.duration.Truncate(time.Microsecond)
+		} else if s.duration > time.Microsecond {
+			s.duration = s.duration.Truncate(time.Microsecond)
+		}
 	}
 
 	return s

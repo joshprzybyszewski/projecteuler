@@ -29,13 +29,16 @@ func SaveCache() {
 	lines := cache.knownToString()
 	fileString := strings.Join(lines, "\n")
 
-	mainFileWriter, err := os.Create(primesCacheFileName)
+	cacheFile, err := os.Create(primesCacheFileName)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer mainFileWriter.Close()
-	w := bufio.NewWriter(mainFileWriter)
-	w.WriteString(fileString)
+	defer cacheFile.Close()
+	w := bufio.NewWriter(cacheFile)
+	_, err = w.WriteString(fileString)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	err = w.Flush()
 	if err != nil {
