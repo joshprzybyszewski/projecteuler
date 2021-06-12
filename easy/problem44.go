@@ -3,6 +3,8 @@ package easy
 import (
 	"fmt"
 	"log"
+
+	"github.com/joshprzybyszewski/projecteuler/sequence"
 )
 
 func SolveProblem44() string {
@@ -21,43 +23,29 @@ func SolveProblem44() string {
 		is minimised;
 		what is the value of D?
 	*/
-	ans := `TODO` // getProblem44Answer()
+	ans := getProblem44Answer()
 	return fmt.Sprintf("%v", ans)
 }
 
 func getProblem44Answer() int {
-	for d := uint(1); ; d++ {
-		pd := getNthPentagonalNumber(d)
-		log.Printf("Checking n = %d, pn = %d\n", d, pd)
+	for d := uint(1000); ; d++ {
+		pd := sequence.Pentagonal.GetNth(d)
+		log.Printf("Checking d = %d, pd = %d\n", d, pd)
 		shouldBreakK := false
 		for k := uint(1); !shouldBreakK; k++ {
-			pk := getNthPentagonalNumber(k)
-			next := getNthPentagonalNumber(k + 1)
+			pk := sequence.Pentagonal.GetNth(k)
+			next := sequence.Pentagonal.GetNth(k + 1)
 			if pd < next-pk {
-				log.Printf("\tIs not, because k = %d, pk = %d, pk+1 = %d\n", k, pk, next)
+				log.Printf("\t Breaking at k = %d, pk = %d\n", k, pk)
 				shouldBreakK = true
 				continue
 			}
 			pj := pk + pd
-			if isPentagonalNumber(pj) && isPentagonalNumber(pj+pk) {
-				return pd
+			if sequence.Pentagonal.Is(pj) {
+				if sequence.Pentagonal.Is(pj + pk) {
+					return pd
+				}
 			}
 		}
 	}
-}
-
-func isPentagonalNumber(n int) bool {
-	for i := uint(1); ; i++ {
-		pn := getNthPentagonalNumber(i)
-		if pn == n {
-			return true
-		}
-		if pn > n {
-			return false
-		}
-	}
-}
-
-func getNthPentagonalNumber(n uint) int {
-	return int(n * (3*n - 1) / 2)
 }
