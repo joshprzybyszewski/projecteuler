@@ -602,3 +602,16 @@ func TestIsGoldbachOtherConjectureCounterExample(t *testing.T) {
 	assert.False(t, isGoldbachOtherConjectureCounterExample(11))
 
 }
+
+func TestGetConsecutiveNumbersWithNDistinctPrimeFactors(t *testing.T) {
+	assert.Equal(t, []int{14, 15}, getConsecutiveNumbersWithNDistinctPrimeFactors(2))
+	assert.Equal(t, []int{644, 645, 646}, getConsecutiveNumbersWithNDistinctPrimeFactors(3))
+}
+
+func TestGetNumDistinctPrimeFactors(t *testing.T) {
+	assert.Equal(t, 2, getNumDistinctPrimeFactors(14))
+	assert.Equal(t, 2, getNumDistinctPrimeFactors(15))
+	assert.Equal(t, 3, getNumDistinctPrimeFactors(644))
+	assert.Equal(t, 3, getNumDistinctPrimeFactors(645))
+	assert.Equal(t, 3, getNumDistinctPrimeFactors(646))
+}
