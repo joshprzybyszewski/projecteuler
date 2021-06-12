@@ -600,6 +600,8 @@ func TestIsTriangleNumber(t *testing.T) {
 	assert.False(t, isTriangleNumber(34))
 	assert.False(t, isTriangleNumber(44))
 	assert.False(t, isTriangleNumber(54))
+
+	assert.True(t, isTriangleNumber(40755))
 }
 
 func TestIsProblem43Property(t *testing.T) {
@@ -624,6 +626,8 @@ func TestIsPentagonalNumber(t *testing.T) {
 	assert.False(t, isPentagonalNumber(34))
 	assert.False(t, isPentagonalNumber(44))
 	assert.False(t, isPentagonalNumber(54))
+
+	assert.True(t, isPentagonalNumber(40755))
 }
 
 func TestGetNthPentagonalNumber(t *testing.T) {
@@ -637,4 +641,14 @@ func TestGetNthPentagonalNumber(t *testing.T) {
 	assert.Equal(t, 92, getNthPentagonalNumber(8))
 	assert.Equal(t, 117, getNthPentagonalNumber(9))
 	assert.Equal(t, 145, getNthPentagonalNumber(10))
+}
+
+func TestGetNthHexagonalNumber(t *testing.T) {
+	assert.Equal(t, 1, getNthHexagonalNumber(1))
+	assert.Equal(t, 6, getNthHexagonalNumber(2))
+	assert.Equal(t, 15, getNthHexagonalNumber(3))
+	assert.Equal(t, 28, getNthHexagonalNumber(4))
+	assert.Equal(t, 45, getNthHexagonalNumber(5))
+
+	assert.True(t, isHexagonalNumber(40755))
 }
