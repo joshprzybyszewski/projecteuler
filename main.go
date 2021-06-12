@@ -54,13 +54,19 @@ func solveAll() {
 		return solutions[i].num < solutions[j].num
 	})
 
-	var output string
-	numSolved, output = buildOutput(solutions)
+	_, output := buildOutput(solutions)
 	writeOutputOfSolutions(output)
+
+	sort.Slice(solutions, func(i, j int) bool {
+		return solutions[i].duration < solutions[j].duration
+	})
+	numSolved, output = buildOutput(solutions)
 	fmt.Print(output)
 }
 
-func buildOutput(solutions []solution) (int, string) {
+func buildOutput(
+	solutions []solution,
+) (int, string) {
 	numSolved := 0
 	var sb strings.Builder
 	sb.WriteString("|Problem #|Answer|Duration|\n")

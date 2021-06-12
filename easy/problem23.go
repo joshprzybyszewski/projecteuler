@@ -2,6 +2,7 @@ package easy
 
 import (
 	"fmt"
+	"sort"
 )
 
 type perfectNumberState int8
@@ -61,14 +62,13 @@ func hasTwoElementsWithSum(sum int, elems []int) bool {
 		if a > sum {
 			break
 		}
-		for _, b := range elems {
-			trial := a + b
-			if trial == sum {
-				return true
-			}
-			if trial > sum {
-				break
-			}
+		target := sum - a
+
+		i := sort.Search(len(elems), func(i int) bool {
+			return target <= elems[i]
+		})
+		if i < len(elems) && elems[i] == target {
+			return true
 		}
 	}
 	return false
