@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/joshprzybyszewski/projecteuler/easy"
+	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
 var (
@@ -15,6 +16,9 @@ var (
 )
 
 func main() {
+	primes.InitCache()
+	defer primes.SaveCache()
+
 	solveAll()
 }
 

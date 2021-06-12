@@ -3,6 +3,7 @@ package primes
 import (
 	"math"
 	"sort"
+	"strconv"
 )
 
 var _ cacher = (*sliceCache)(nil)
@@ -21,6 +22,35 @@ func newSliceCache() *sliceCache {
 		primes: []int{2, 3, 5},
 		known:  5,
 	}
+}
+
+func newSliceCacheFromFile(lines []string) *sliceCache {
+	sc := &sliceCache{
+		primes: make([]int, 0, len(lines)),
+	}
+
+	for _, line := range lines {
+		p, err := strconv.Atoi(line)
+		if err != nil {
+			break
+		}
+		sc.primes = append(sc.primes, p)
+	}
+	if len(sc.primes) == 0 {
+		return newSliceCache()
+	}
+
+	sc.known = sc.primes[len(sc.primes)-1]
+
+	return sc
+}
+
+func (m *sliceCache) knownToString() []string {
+	ret := make([]string, 0, len(m.primes))
+	for _, p := range m.primes {
+		ret = append(ret, strconv.Itoa(p))
+	}
+	return ret
 }
 
 func (m *sliceCache) buildTo(n int) {

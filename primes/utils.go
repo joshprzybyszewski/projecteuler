@@ -7,6 +7,8 @@ var (
 type cacher interface {
 	is(int) bool
 	below(int) []int
+
+	knownToString() []string
 }
 
 func Is(n int) bool {

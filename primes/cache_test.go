@@ -9,7 +9,6 @@ import (
 
 func getAllCachers() []cacher {
 	return []cacher{
-		newMapCache(),
 		newSliceCache(),
 	}
 }
