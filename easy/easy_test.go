@@ -607,3 +607,34 @@ func TestIsProblem43Property(t *testing.T) {
 
 	assert.True(t, isProblem43Property([]int{1, 4, 0, 6, 3, 5, 7, 2, 8, 9}))
 }
+
+func TestIsPentagonalNumber(t *testing.T) {
+	assert.True(t, isPentagonalNumber(1))
+	assert.True(t, isPentagonalNumber(5))
+	assert.True(t, isPentagonalNumber(12))
+	assert.True(t, isPentagonalNumber(22))
+	assert.True(t, isPentagonalNumber(35))
+	assert.True(t, isPentagonalNumber(51))
+	assert.True(t, isPentagonalNumber(70))
+	assert.True(t, isPentagonalNumber(92))
+	assert.True(t, isPentagonalNumber(117))
+	assert.True(t, isPentagonalNumber(145))
+
+	assert.False(t, isPentagonalNumber(24))
+	assert.False(t, isPentagonalNumber(34))
+	assert.False(t, isPentagonalNumber(44))
+	assert.False(t, isPentagonalNumber(54))
+}
+
+func TestGetNthPentagonalNumber(t *testing.T) {
+	assert.Equal(t, 1, getNthPentagonalNumber(1))
+	assert.Equal(t, 5, getNthPentagonalNumber(2))
+	assert.Equal(t, 12, getNthPentagonalNumber(3))
+	assert.Equal(t, 22, getNthPentagonalNumber(4))
+	assert.Equal(t, 35, getNthPentagonalNumber(5))
+	assert.Equal(t, 51, getNthPentagonalNumber(6))
+	assert.Equal(t, 70, getNthPentagonalNumber(7))
+	assert.Equal(t, 92, getNthPentagonalNumber(8))
+	assert.Equal(t, 117, getNthPentagonalNumber(9))
+	assert.Equal(t, 145, getNthPentagonalNumber(10))
+}

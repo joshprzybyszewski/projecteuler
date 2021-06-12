@@ -130,7 +130,11 @@ func solve(puzzleNum int) {
 	case 42:
 		easy.SolveProblem42()
 	case 43:
-		easy.SolveProblem43()
+		// takes about 10 seconds to generate all pandigitals
+		// easy.SolveProblem43()
+		solved = false
+	case 44:
+		easy.SolveProblem44()
 		// TEMPLATE_MARKER //
 	case 67:
 		easy.SolveProblem67()
