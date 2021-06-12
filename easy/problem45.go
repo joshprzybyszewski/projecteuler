@@ -2,6 +2,8 @@ package easy
 
 import (
 	"fmt"
+
+	"github.com/joshprzybyszewski/projecteuler/sequence"
 )
 
 func SolveProblem45() string {
@@ -22,25 +24,9 @@ func SolveProblem45() string {
 
 func getProblem45Answer() int {
 	for h := uint(144); ; h++ {
-		n := getNthHexagonalNumber(h)
-		if isPentagonalNumber(n) && isTriangleNumber(n) {
+		n := sequence.Hexagonal.GetNth(h)
+		if sequence.Pentagonal.Is(n) && sequence.Triangular.Is(n) {
 			return n
 		}
 	}
-}
-
-func isHexagonalNumber(n int) bool {
-	for i := uint(1); ; i++ {
-		pn := getNthHexagonalNumber(i)
-		if pn == n {
-			return true
-		}
-		if pn > n {
-			return false
-		}
-	}
-}
-
-func getNthHexagonalNumber(n uint) int {
-	return int(n * (2*n - 1))
 }

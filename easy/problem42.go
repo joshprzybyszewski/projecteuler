@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"log"
 	"strings"
+
+	"github.com/joshprzybyszewski/projecteuler/sequence"
 )
 
 const (
@@ -44,7 +46,7 @@ func getProbelm42Words() []string {
 func getCountOfTriangleWords(words []string) int {
 	sum := 0
 	for _, word := range words {
-		if isTriangleNumber(
+		if sequence.Triangular.Is(
 			getAlphabeticalValue(word),
 		) {
 			sum++
@@ -52,16 +54,4 @@ func getCountOfTriangleWords(words []string) int {
 	}
 
 	return sum
-}
-
-func isTriangleNumber(n int) bool {
-	for i := 1; ; i++ {
-		tn := i * (i + 1) / 2
-		if tn == n {
-			return true
-		}
-		if tn > n {
-			return false
-		}
-	}
 }
