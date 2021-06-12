@@ -1,32 +1,38 @@
 package primes
 
 import (
+	"log"
 	"math"
 	"sort"
 	"strconv"
+	"sync"
 )
 
 var _ cacher = (*sliceCache)(nil)
 
 var (
-	maxSliceCacheSize = 1 << 16
+	maxSliceCacheSize = 1 << 31
 )
 
 type sliceCache struct {
 	primes []int
 	known  int
+
+	lock *sync.RWMutex
 }
 
 func newSliceCache() *sliceCache {
 	return &sliceCache{
 		primes: []int{2, 3, 5},
 		known:  5,
+		lock:   &sync.RWMutex{},
 	}
 }
 
 func newSliceCacheFromFile(lines []string) *sliceCache {
 	sc := &sliceCache{
 		primes: make([]int, 0, len(lines)),
+		lock:   &sync.RWMutex{},
 	}
 
 	for _, line := range lines {
@@ -36,6 +42,7 @@ func newSliceCacheFromFile(lines []string) *sliceCache {
 		}
 		sc.primes = append(sc.primes, p)
 	}
+	log.Printf("loaded %d primes from file\n", len(lines))
 	if len(sc.primes) == 0 {
 		return newSliceCache()
 	}
@@ -46,6 +53,9 @@ func newSliceCacheFromFile(lines []string) *sliceCache {
 }
 
 func (m *sliceCache) knownToString() []string {
+	m.lock.RLock()
+	defer m.lock.RUnlock()
+
 	ret := make([]string, 0, len(m.primes))
 	for _, p := range m.primes {
 		ret = append(ret, strconv.Itoa(p))
@@ -53,7 +63,21 @@ func (m *sliceCache) knownToString() []string {
 	return ret
 }
 
+func (m *sliceCache) needsToBuild(n int) bool {
+	m.lock.RLock()
+	defer m.lock.RUnlock()
+
+	return m.known < n || len(m.primes) >= maxSliceCacheSize
+}
+
 func (m *sliceCache) buildTo(n int) {
+	if !m.needsToBuild(n) {
+		return
+	}
+
+	m.lock.Lock()
+	defer m.lock.Unlock()
+
 	for m.known < n && len(m.primes) < maxSliceCacheSize {
 		m.known++
 
@@ -64,6 +88,8 @@ func (m *sliceCache) buildTo(n int) {
 }
 
 func (m *sliceCache) knownIsPrime() bool {
+	// don't lock in here, because we have a lock already.
+	// also don't use this method when you don't have a lock.
 	max := int(math.Floor(math.Sqrt(float64(m.known))))
 
 	for _, p := range m.primes {
@@ -85,6 +111,9 @@ func (m *sliceCache) is(n int) bool {
 		return m.isPrimeBeyondCache(n)
 	}
 
+	m.lock.RLock()
+	defer m.lock.RUnlock()
+
 	i := sort.Search(len(m.primes), func(i int) bool {
 		return n <= m.primes[i]
 	})
@@ -93,6 +122,9 @@ func (m *sliceCache) is(n int) bool {
 
 func (m *sliceCache) isPrimeBeyondCache(n int) bool {
 	maxToCheck := int(math.Floor(math.Sqrt(float64(n))))
+
+	m.lock.RLock()
+	defer m.lock.RUnlock()
 
 	for _, p := range m.primes {
 		if n%p == 0 {
@@ -112,9 +144,9 @@ func (m *sliceCache) isPrimeBeyondCache(n int) bool {
 func (m *sliceCache) below(max int) []int {
 	m.buildTo(max)
 
-	b := m.knownBelow(max)
+	b, hadAll := m.knownBelow(max)
 
-	if max <= m.known {
+	if hadAll {
 		// the desired max is below what we know about
 		// let's just return the slice of known numbers
 		return b
@@ -131,15 +163,17 @@ func (m *sliceCache) below(max int) []int {
 	return b
 }
 
-func (m *sliceCache) knownBelow(max int) []int {
+func (m *sliceCache) knownBelow(max int) ([]int, bool) {
+	m.lock.RLock()
+	defer m.lock.RUnlock()
 
-	l := make([]int, 0, len(m.primes))
+	i := sort.Search(len(m.primes), func(i int) bool {
+		return m.primes[i] < max
+	})
+	numToCopy := i + 1
 
-	for _, p := range m.primes {
-		if p < max {
-			l = append(l, p)
-		}
-	}
+	cpy := make([]int, numToCopy)
+	copy(cpy, m.primes)
 
-	return l
+	return cpy, numToCopy <= len(m.primes)
 }

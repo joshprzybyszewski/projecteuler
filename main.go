@@ -102,9 +102,7 @@ func solve(puzzleNum int) solution {
 	case 2:
 		s.answer = easy.SolveProblem2()
 	case 3:
-		// takes a long time to generate the prime cache
-		// s.answer = easy.SolveProblem3()
-		s.solved = false
+		s.answer = easy.SolveProblem3()
 	case 4:
 		s.answer = easy.SolveProblem4()
 	case 5:
@@ -118,9 +116,7 @@ func solve(puzzleNum int) solution {
 	case 9:
 		s.answer = easy.SolveProblem9()
 	case 10:
-		// takes a long time to find the first 2 million primes
-		// s.answer = easy.SolveProblem10()
-		s.solved = false
+		s.answer = easy.SolveProblem10()
 	case 11:
 		s.answer = easy.SolveProblem11()
 	case 12:
@@ -146,9 +142,7 @@ func solve(puzzleNum int) solution {
 	case 22:
 		s.answer = easy.SolveProblem22()
 	case 23:
-		// takes a long time
-		// s.answer = easy.SolveProblem23()
-		s.solved = false
+		s.answer = easy.SolveProblem23()
 	case 24:
 		s.answer = easy.SolveProblem24()
 	case 25:
@@ -172,15 +166,11 @@ func solve(puzzleNum int) solution {
 	case 34:
 		s.answer = easy.SolveProblem34()
 	case 35:
-		// gotta build the prime cache here too...
-		// s.answer = easy.SolveProblem35()
-		s.solved = false
+		s.answer = easy.SolveProblem35()
 	case 36:
 		s.answer = easy.SolveProblem36()
 	case 37:
-		// takes a long time
-		// s.answer = easy.SolveProblem37()
-		s.solved = false
+		s.answer = easy.SolveProblem37()
 	case 38:
 		s.answer = easy.SolveProblem38()
 	case 39:
@@ -188,15 +178,11 @@ func solve(puzzleNum int) solution {
 	case 40:
 		s.answer = easy.SolveProblem40()
 	case 41:
-		// takes a long time because it generates a ton of primes
-		// s.answer = easy.SolveProblem41()
-		s.solved = false
+		s.answer = easy.SolveProblem41()
 	case 42:
 		s.answer = easy.SolveProblem42()
 	case 43:
-		// takes about 10 seconds to generate all pandigitals
-		// s.answer = easy.SolveProblem43()
-		s.solved = false
+		s.answer = easy.SolveProblem43()
 	case 44:
 		s.answer = easy.SolveProblem44()
 	case 45:
