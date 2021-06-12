@@ -135,6 +135,8 @@ func solve(puzzleNum int) {
 		solved = false
 	case 44:
 		easy.SolveProblem44()
+	case 45:
+		easy.SolveProblem45()
 		// TEMPLATE_MARKER //
 	case 67:
 		easy.SolveProblem67()

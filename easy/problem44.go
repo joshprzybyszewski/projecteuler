@@ -21,7 +21,7 @@ func SolveProblem44() {
 		is minimised;
 		what is the value of D?
 	*/
-	ans := getProblem44Answer()
+	ans := `TODO` // getProblem44Answer()
 	fmt.Printf("Problem 44 Answer: %v\n", ans)
 }
 
