@@ -6,6 +6,10 @@ help: ## Prints out the options available in this makefile
 solve: ## Run the solver for all puzzles
 	go run .
 
+.PHONY: solveall
+solveall: ## Run the solver for all puzzles
+	go run . -all
+
 .PHONY: test
 test: ## Run unit tests
 	go test -timeout=30s -short ./...

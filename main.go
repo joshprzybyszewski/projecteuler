@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"sort"
@@ -11,10 +12,14 @@ import (
 )
 
 var (
-	highestSolved = 100
+	highestSolved    = 100
+	solveTheLongOnes = false
 )
 
 func main() {
+	flag.BoolVar(&solveTheLongOnes, `all`, false, `include the long running problems`)
+	flag.Parse()
+
 	primes.InitCache()
 	defer primes.SaveCache()
 
@@ -154,17 +159,23 @@ func solve(
 	case 43:
 		s.answer = easy.SolveProblem43()
 	case 44:
-		// I'm not clever enough to tell you why this takes so long
-		// s.answer = easy.SolveProblem44()
-		s.solved = false
+		if solveTheLongOnes {
+			// I'm not clever enough to tell you why this takes so long
+			s.answer = easy.SolveProblem44()
+		} else {
+			s.solved = false
+		}
 	case 45:
 		s.answer = easy.SolveProblem45()
 	case 46:
 		s.answer = easy.SolveProblem46()
 	case 47:
-		// I'm not clever enough to tell you why this takes so long
-		// s.answer = easy.SolveProblem47()
-		s.solved = false
+		if solveTheLongOnes {
+			// I'm not clever enough to tell you why this takes so long
+			s.answer = easy.SolveProblem47()
+		} else {
+			s.solved = false
+		}
 	case 48:
 		s.answer = easy.SolveProblem48()
 	case 49:
