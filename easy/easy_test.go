@@ -625,19 +625,10 @@ func TestIsPermutation(t *testing.T) {
 	assert.True(t, isPermutation([]int{1, 2, 3}, []int{1, 2, 3}))
 }
 
-func TestGetConsecutivePrimesWithSum(t *testing.T) {
-	assert.Empty(t, getConsecutivePrimesWithSum(1))
-	assert.Empty(t, getConsecutivePrimesWithSum(2))
-	assert.Empty(t, getConsecutivePrimesWithSum(3))
-
-	assert.Equal(t, []int{2, 3}, getConsecutivePrimesWithSum(5))
-	assert.Equal(t, []int{3, 5}, getConsecutivePrimesWithSum(8))
-	assert.Equal(t, []int{11, 13}, getConsecutivePrimesWithSum(24))
-}
-
 func TestGetPrimeWithMostConsecutiveAdditivesBelow(t *testing.T) {
 	assert.Equal(t, 41, getPrimeWithMostConsecutiveAdditivesBelow(100))
 	assert.Equal(t, 953, getPrimeWithMostConsecutiveAdditivesBelow(1000))
+	assert.NotEqual(t, 978269, getPrimeWithMostConsecutiveAdditivesBelow(1000000))
 }
 
 func TestGetNToTheNSeriesAnswer(t *testing.T) {

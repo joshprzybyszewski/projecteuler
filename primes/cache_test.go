@@ -46,3 +46,19 @@ func TestCacherBelow(t *testing.T) {
 		assert.Equal(t, []int{2, 3, 5, 7}, act)
 	}
 }
+
+func TestLoadingFromFile(t *testing.T) {
+	sc := newSliceCacheFromFile([]string{`2`, `3`, `5`})
+	assert.True(t, sc.is(7))
+	act := sc.below(15)
+	assert.Equal(t, []int{2, 3, 5, 7, 11, 13}, act)
+	actOutput := sc.knownToString()
+	assert.Equal(t, []string{`2`, `3`, `5`, `7`, `11`, `13`}, actOutput)
+
+	sc2 := newSliceCacheFromFile(actOutput)
+	assert.True(t, sc2.is(7))
+	act = sc2.below(30)
+	assert.Equal(t, []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}, act)
+	actOutput = sc2.knownToString()
+	assert.Equal(t, []string{`2`, `3`, `5`, `7`, `11`, `13`, `17`, `19`, `23`, `29`}, actOutput)
+}

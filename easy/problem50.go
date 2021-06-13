@@ -3,6 +3,7 @@ package easy
 import (
 	"fmt"
 
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 	"github.com/joshprzybyszewski/projecteuler/primes"
 )
 
@@ -24,61 +25,33 @@ func SolveProblem50() string {
 	return fmt.Sprintf("%v", ans)
 }
 
-func getPrimeWithMostConsecutiveAdditivesBelowTrial2(max int) int {
-	sum := 0
-	lastSeen := 0
-	for _, p := range primes.Below(max) {
-		sum += p
+func getPrimeWithMostConsecutiveAdditivesBelow(max int) int {
+	ps := primes.Below(max)
+
+	bestPrime := 0
+
+	for n := 1; ; n++ {
+		sum := mathUtils.Sum(ps[0:n])
 		if sum >= max {
 			break
 		}
+
 		if primes.Is(sum) {
-			lastSeen = sum
+			bestPrime = sum
+			continue
 		}
-	}
-	return lastSeen
-}
 
-func getPrimeWithMostConsecutiveAdditivesBelow(max int) int {
-	bestP := 0
-	var bestAdditives []int
-	for _, p := range primes.Below(max) {
-		additives := getConsecutivePrimesWithSum(p)
-		if len(additives) > len(bestAdditives) {
-			bestAdditives = additives
-			bestP = p
-			fmt.Printf("%d has %d additives\n", bestP, len(bestAdditives))
-		}
-	}
-	fmt.Printf("%d has %d additives: %v\n", bestP, len(bestAdditives), bestAdditives)
-
-	return bestP
-}
-
-func getConsecutivePrimesWithSum(p int) []int {
-	if p <= 2 {
-		// input must be greater than the first prime, 2
-		return nil
-	}
-
-	ps := primes.Below(p)
-	minI, maxI := 0, 1
-	sum := ps[minI]
-
-	for minI < maxI && maxI < len(ps) {
-		next := ps[maxI]
-		nextSum := sum + next
-		switch {
-		case nextSum == p:
-			return ps[minI : maxI+1]
-		case nextSum < p:
-			sum = nextSum
-			maxI++
-		default:
-			sum -= ps[minI]
-			minI++
+		for i := 1; ; i++ {
+			sum = mathUtils.Sum(ps[i : n+i])
+			if sum >= max {
+				break
+			}
+			if primes.Is(sum) {
+				bestPrime = sum
+				break
+			}
 		}
 	}
 
-	return nil
+	return bestPrime
 }

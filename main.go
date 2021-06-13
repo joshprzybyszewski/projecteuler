@@ -1,13 +1,9 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
-	"os"
-	"runtime"
 	"sort"
-	"strings"
 	"time"
 
 	"github.com/joshprzybyszewski/projecteuler/easy"
@@ -31,89 +27,23 @@ func solveAll() {
 		fmt.Printf("\nSolved %d puzzles in %s\n", numSolved, time.Since(t0))
 	}(time.Now())
 
-	pns := make(chan int, highestSolved)
-	results := make(chan solution, highestSolved)
+	cs := newConcurrentSolver()
+	cs.startWorkers()
+	cs.sendWork(highestSolved)
+	solutions := cs.getResults()
 
-	for i := 0; i < runtime.NumCPU(); i++ {
-		go work(pns, results)
-	}
-
-	for i := 1; i <= highestSolved; i++ {
-		pns <- i
-	}
-	close(pns)
-
-	solutions := make([]solution, 0, highestSolved)
-	for s := range results {
-		solutions = append(solutions, s)
-		if len(solutions) == highestSolved {
-			break
-		}
-	}
 	sort.Slice(solutions, func(i, j int) bool {
 		return solutions[i].num < solutions[j].num
 	})
 
 	_, output := buildOutput(solutions)
-	writeOutputOfSolutions(output)
+	writeToFile(`answers.md`, output)
 
 	sort.Slice(solutions, func(i, j int) bool {
 		return solutions[i].duration < solutions[j].duration
 	})
 	numSolved, output = buildOutput(solutions)
 	fmt.Print(output)
-}
-
-func buildOutput(
-	solutions []solution,
-) (int, string) {
-	numSolved := 0
-	var sb strings.Builder
-	sb.WriteString("|Problem #|Answer|Duration|\n")
-	sb.WriteString("|-:|-|-:|\n")
-	for _, s := range solutions {
-		if !s.solved {
-			sb.WriteString(fmt.Sprintf("|%d|Skipped|N/A|\n", s.num))
-			continue
-		}
-		numSolved++
-		sb.WriteString(fmt.Sprintf("|%d|%s|%s|\n", s.num, s.answer, s.duration))
-	}
-	return numSolved, sb.String()
-}
-
-func writeOutputOfSolutions(fileString string) {
-	answerFile, err := os.Create(`answers.md`)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer answerFile.Close()
-	w := bufio.NewWriter(answerFile)
-	_, err = w.WriteString(fileString)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = w.Flush()
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func work(
-	c <-chan int,
-	results chan solution,
-) {
-	for pn := range c {
-		results <- solve(pn)
-	}
-}
-
-type solution struct {
-	answer   string
-	solved   bool
-	num      int
-	duration time.Duration
 }
 
 func solve(

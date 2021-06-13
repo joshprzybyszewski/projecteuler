@@ -15,7 +15,8 @@ const (
 func InitCache() {
 	dat, err := ioutil.ReadFile(primesCacheFileName)
 	if err != nil {
-		log.Fatalf("primes cache cannot read file: %v", err)
+		log.Printf("primes cache cannot read file: %v", err)
+		return
 	}
 	lines := strings.Split(string(dat), "\n")
 	if len(lines) == 0 {
