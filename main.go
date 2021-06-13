@@ -232,11 +232,15 @@ func solve(
 	case 46:
 		s.answer = easy.SolveProblem46()
 	case 47:
-		s.answer = easy.SolveProblem47()
+		// I'm not clever enough to tell you why this takes so long
+		// s.answer = easy.SolveProblem47()
+		s.solved = false
 	case 48:
 		s.answer = easy.SolveProblem48()
 	case 49:
 		s.answer = easy.SolveProblem49()
+	case 50:
+		s.answer = easy.SolveProblem50()
 		// TEMPLATE_MARKER //
 	case 67:
 		s.answer = easy.SolveProblem67()
