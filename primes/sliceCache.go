@@ -11,7 +11,7 @@ import (
 var _ cacher = (*sliceCache)(nil)
 
 var (
-	maxSliceCacheSize = 1 << 16
+	maxSliceCacheSize = 1 << 31
 )
 
 type sliceCache struct {
