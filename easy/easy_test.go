@@ -634,3 +634,53 @@ func TestGetPrimeWithMostConsecutiveAdditivesBelow(t *testing.T) {
 func TestGetNToTheNSeriesAnswer(t *testing.T) {
 	assert.Equal(t, 10405071317, getNToTheNSeriesAnswer(10))
 }
+
+func TestGetPrimeReplacements(t *testing.T) {
+	act := getPrimeReplacements(mathUtils.ToDigits(13), []int{0})
+	exp := []int{13, 23, 43, 53, 73, 83}
+	assert.Equal(t, exp, act)
+
+	act = getPrimeReplacements(mathUtils.ToDigits(56003), []int{2, 3})
+	exp = []int{56003, 56113, 56333, 56443, 56663, 56773, 56993}
+	assert.Equal(t, exp, act)
+
+	act = getPrimeReplacements(mathUtils.ToDigits(17), nil)
+	assert.Empty(t, act)
+}
+
+func TestGetIndexesForPrimeReplacement(t *testing.T) {
+	digits, options := getIndexesForPrimeReplacement(13)
+	expOptions := [][]int{
+		nil,
+		{0},
+		nil,
+	}
+	assert.Equal(t, []int{1, 3}, digits)
+	assert.Equal(t, expOptions, options)
+
+	digits, options = getIndexesForPrimeReplacement(56003)
+	expOptions = [][]int{
+		{2, 3},
+		nil,
+		nil,
+	}
+	assert.Equal(t, []int{5, 6, 0, 0, 3}, digits)
+	assert.Equal(t, expOptions, options)
+
+	digits, options = getIndexesForPrimeReplacement(56113)
+	expOptions = [][]int{
+		nil,
+		{2, 3},
+		nil,
+	}
+	assert.Equal(t, []int{5, 6, 1, 1, 3}, digits)
+	assert.Equal(t, expOptions, options)
+}
+
+func TestGetSmallestPrimeWithNPrimeValueFamily(t *testing.T) {
+	act := getSmallestPrimeWithNPrimeValueFamily(6)
+	assert.Equal(t, 13, act)
+
+	act = getSmallestPrimeWithNPrimeValueFamily(7)
+	assert.Equal(t, 56003, act)
+}
