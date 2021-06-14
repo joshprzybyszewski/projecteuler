@@ -2,7 +2,6 @@ package easy
 
 import (
 	"fmt"
-	"log"
 	"math/big"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
@@ -29,7 +28,6 @@ func choosesMoreThan(
 				big.NewInt(r),
 			)
 			if c.Cmp(bigV) > 0 {
-				log.Printf("%d choose %d = %d\n", n, r, c)
 				sum++
 			}
 		}
