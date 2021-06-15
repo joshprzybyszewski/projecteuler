@@ -3,7 +3,7 @@ package easy
 import (
 	"fmt"
 
-	"github.com/joshprzybyszewski/projecteuler/utils"
+	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 )
 
 func SolveProblem28() string {
@@ -29,20 +29,9 @@ func SolveProblem28() string {
 }
 
 func getSumOfProblem28Spiral(n int) int {
-	if utils.IsEven(n) {
-		// invalid input!
-		return 0
-	}
 	sum := 0
-	if n >= 1 {
-		sum++
-	}
-	for i := 3; i <= n; i += 2 {
-		square := i * i
-		for c := 0; c < 4; c++ {
-			sum += square
-			square -= i - 1
-		}
+	for i := 1; i <= n; i += 2 {
+		sum += mathUtils.Sum(getSpiralCorners(i))
 	}
 	return sum
 }

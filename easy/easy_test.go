@@ -684,3 +684,18 @@ func TestGetSmallestPrimeWithNPrimeValueFamily(t *testing.T) {
 	act = getSmallestPrimeWithNPrimeValueFamily(7)
 	assert.Equal(t, 56003, act)
 }
+
+func TestIsLychrelNumber(t *testing.T) {
+	assert.False(t, isLychrelNumber(47))
+	assert.False(t, isLychrelNumber(349))
+
+	assert.True(t, isLychrelNumber(196))
+}
+
+func TestReverseInts(t *testing.T) {
+	assert.Nil(t, reverseInts(nil))
+	assert.Empty(t, reverseInts([]int{}))
+	assert.Equal(t, []int{1}, reverseInts([]int{1}))
+	assert.Equal(t, []int{2, 1}, reverseInts([]int{1, 2}))
+	assert.Equal(t, []int{3, 2, 1}, reverseInts([]int{1, 2, 3}))
+}

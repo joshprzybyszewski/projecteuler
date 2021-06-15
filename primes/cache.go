@@ -9,14 +9,18 @@ import (
 )
 
 const (
-	primesCacheFileName = `primes/cache.txt`
+	primesCacheFileName    = `primes/cache.txt`
+	primesBigCacheFileName = `primes/big_cache.txt`
 )
 
 func InitCache() {
-	dat, err := ioutil.ReadFile(primesCacheFileName)
+	dat, err := ioutil.ReadFile(primesBigCacheFileName)
 	if err != nil {
-		log.Printf("primes cache cannot read file: %v", err)
-		return
+		dat, err = ioutil.ReadFile(primesCacheFileName)
+		if err != nil {
+			log.Printf("primes cache cannot read file: %v", err)
+			return
+		}
 	}
 	lines := strings.Split(string(dat), "\n")
 	if len(lines) == 0 {
@@ -30,7 +34,7 @@ func SaveCache() {
 	lines := cache.knownToString()
 	fileString := strings.Join(lines, "\n")
 
-	cacheFile, err := os.Create(primesCacheFileName)
+	cacheFile, err := os.Create(primesBigCacheFileName)
 	if err != nil {
 		log.Fatal(err)
 	}
