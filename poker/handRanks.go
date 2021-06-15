@@ -51,26 +51,26 @@ func (hr HandRank) String() string {
 func getRank(sortedByValue []model.Card) HandRank {
 	straight := isStraight(sortedByValue)
 	flush := isFlush(sortedByValue)
-	alike1, alike2 := numAlike(sortedByValue)
+	alike1, alike2 := getAlike(sortedByValue)
 
 	switch {
-	case straight && flush && sortedByValue[0].Value == 10:
+	case straight && flush && sortedByValue[0].Value == 1:
 		return RoyalFlush
 	case straight && flush:
 		return StraightFlush
-	case alike1 == 4, alike2 == 4:
+	case len(alike1) == 4, len(alike2) == 4:
 		return FourOfAKind
-	case alike1+alike2 == 5:
+	case len(alike1)+len(alike2) == 5:
 		return FullHouse
 	case flush:
 		return Flush
 	case straight:
 		return Straight
-	case alike1 == 3, alike2 == 3:
+	case len(alike1) == 3, len(alike2) == 3:
 		return ThreeOfAKind
-	case alike1 == 2 && alike2 == 2:
+	case len(alike1) == 2 && len(alike2) == 2:
 		return TwoPair
-	case alike1 == 2, alike2 == 2:
+	case len(alike1) == 2, len(alike2) == 2:
 		return OnePair
 	default:
 		return HighCard
@@ -78,9 +78,12 @@ func getRank(sortedByValue []model.Card) HandRank {
 }
 
 func isStraight(sortedByValue []model.Card) bool {
-	for i := 1; i < len(sortedByValue)-1; i++ {
-		if (sortedByValue[i].Value == 1 && sortedByValue[i-1].Value != 13) ||
-			sortedByValue[i].Value != sortedByValue[i-1].Value+1 {
+	for i := 1; i < len(sortedByValue); i++ {
+		if i == 1 && sortedByValue[i].Value == 13 {
+			if sortedByValue[0].Value != 1 {
+				return false
+			}
+		} else if sortedByValue[i].Value+1 != sortedByValue[i-1].Value {
 			return false
 		}
 	}
@@ -99,30 +102,30 @@ func isFlush(sortedByValue []model.Card) bool {
 	return true
 }
 
-func numAlike(sortedByValue []model.Card) (int, int) {
-	first, second := 0, 0
+func getAlike(sortedByValue []model.Card) ([]model.Card, []model.Card) {
+	var first, second []model.Card
 	next := false
 	for i := 1; i < len(sortedByValue); i++ {
 		if sortedByValue[i].Value == sortedByValue[i-1].Value {
 			if next {
-				second++
+				if len(second) == 0 {
+					second = append(second, sortedByValue[i-1])
+				}
+				second = append(second, sortedByValue[i])
 			} else {
-				first++
+				if len(first) == 0 {
+					first = append(first, sortedByValue[i-1])
+				}
+				first = append(first, sortedByValue[i])
 			}
 		} else {
-			if next && second > 0 {
+			if next && len(second) > 0 {
 				break
 			}
-			if first > 0 {
+			if len(first) > 0 {
 				next = true
 			}
 		}
-	}
-	if first > 0 {
-		first++
-	}
-	if second > 0 {
-		second++
 	}
 
 	return first, second
