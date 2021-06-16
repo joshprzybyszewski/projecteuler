@@ -198,6 +198,8 @@ func solve(
 		s.answer = easy.SolveProblem58()
 	case 55:
 		s.answer = easy.SolveProblem55()
+	case 59:
+		s.answer = easy.SolveProblem59()
 		// TEMPLATE_MARKER //
 	case 67:
 		s.answer = easy.SolveProblem67()
