@@ -141,6 +141,42 @@ func (m *sliceCache) isPrimeBeyondCache(n int) bool {
 	return true
 }
 
+func (m *sliceCache) nth(n uint) int {
+	i := n - 1
+	if int(i) >= maxSliceCacheSize {
+		return -1
+	}
+	m.buildUntil(n)
+
+	m.lock.RLock()
+	defer m.lock.RUnlock()
+	return m.primes[i]
+}
+
+func (m *sliceCache) buildUntil(cacheSize uint) {
+	if m.hasNElems(cacheSize) {
+		return
+	}
+
+	m.lock.Lock()
+	defer m.lock.Unlock()
+
+	for int(cacheSize) >= len(m.primes) && len(m.primes) < maxSliceCacheSize {
+		m.known++
+
+		if m.knownIsPrime() {
+			m.primes = append(m.primes, m.known)
+		}
+	}
+}
+
+func (m *sliceCache) hasNElems(size uint) bool {
+	m.lock.RLock()
+	defer m.lock.RUnlock()
+
+	return int(size) < len(m.primes)
+}
+
 func (m *sliceCache) below(max int) []int {
 	m.buildTo(max)
 

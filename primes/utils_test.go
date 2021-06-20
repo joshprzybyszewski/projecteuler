@@ -60,3 +60,14 @@ func TestBelow(t *testing.T) {
 		Below(30),
 	)
 }
+
+func TestGetNth(t *testing.T) {
+	assert.Equal(t, -1, GetNth(0))
+	assert.Equal(t, 2, GetNth(1))
+	assert.Equal(t, 3, GetNth(2))
+	assert.Equal(t, 5, GetNth(3))
+	assert.Equal(t, 7, GetNth(4))
+	assert.Equal(t, 11, GetNth(5))
+	assert.Equal(t, 13, GetNth(6))
+	assert.Equal(t, 17, GetNth(7))
+}

@@ -7,6 +7,7 @@ var (
 type cacher interface {
 	is(int) bool
 	below(int) []int
+	nth(uint) int
 
 	knownToString() []string
 }
@@ -21,6 +22,13 @@ func Is(n int) bool {
 
 func Below(max int) []int {
 	return cache.below(max)
+}
+
+func GetNth(n uint) int {
+	if n == 0 {
+		return -1
+	}
+	return cache.nth(n)
 }
 
 func Factors(k int) []int {

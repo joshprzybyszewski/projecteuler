@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
+	"github.com/joshprzybyszewski/projecteuler/utils"
 )
 
 func SolveProblem28() string {
@@ -29,6 +30,10 @@ func SolveProblem28() string {
 }
 
 func getSumOfProblem28Spiral(n int) int {
+	if utils.IsEven(n) {
+		return 0
+	}
+
 	sum := 0
 	for i := 1; i <= n; i += 2 {
 		sum += mathUtils.Sum(getSpiralCorners(i))
