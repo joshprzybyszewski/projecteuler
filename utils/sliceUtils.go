@@ -9,6 +9,15 @@ func Uint64Contains(s []uint64, t uint64) bool {
 	return false
 }
 
+func IntContains(s []int, t int) bool {
+	for _, e := range s {
+		if t == e {
+			return true
+		}
+	}
+	return false
+}
+
 func IsSingleEntry(s []int) bool {
 	if len(s) == 0 {
 		return false

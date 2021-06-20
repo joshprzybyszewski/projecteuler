@@ -7,6 +7,7 @@ import (
 
 	"github.com/joshprzybyszewski/projecteuler/mathUtils"
 	"github.com/joshprzybyszewski/projecteuler/primes"
+	"github.com/joshprzybyszewski/projecteuler/sequence"
 	"github.com/joshprzybyszewski/projecteuler/utils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -698,4 +699,15 @@ func TestReverseInts(t *testing.T) {
 	assert.Equal(t, []int{1}, reverseInts([]int{1}))
 	assert.Equal(t, []int{2, 1}, reverseInts([]int{1, 2}))
 	assert.Equal(t, []int{3, 2, 1}, reverseInts([]int{1, 2, 3}))
+}
+
+func TestGetFourDigitPolygonalCycle(t *testing.T) {
+	assert.Equal(t, []int{8281, 8128, 2882}, getFourDigitPolygonalCycle(3))
+
+	assert.True(t, sequence.Triangular.Is(8256))
+	assert.True(t, sequence.Square.Is(5625))
+	assert.True(t, sequence.Pentagonal.Is(2882))
+	assert.True(t, sequence.Hexagonal.Is(8128))
+	assert.True(t, sequence.Heptagonal.Is(2512))
+	assert.True(t, sequence.Octagonal.Is(1281))
 }
