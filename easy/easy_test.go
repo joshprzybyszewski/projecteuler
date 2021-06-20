@@ -711,3 +711,14 @@ func TestGetFourDigitPolygonalCycle(t *testing.T) {
 	assert.True(t, sequence.Heptagonal.Is(2512))
 	assert.True(t, sequence.Octagonal.Is(1281))
 }
+
+func TestGetSmallestPermutationRepresentingNCubes(t *testing.T) {
+	assert.Equal(t,
+		[]int{
+			sequence.Cubes.GetNth(345), // 41063625,
+			sequence.Cubes.GetNth(384), // 56623104,
+			sequence.Cubes.GetNth(405), // 66430125,
+		},
+		getSmallestPermutationRepresentingNCubes(3),
+	)
+}

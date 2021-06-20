@@ -53,7 +53,7 @@ func getFourDigitPolygonalCycle(cycleLen int) []int {
 }
 
 var (
-	allPolygonalSequences = []sequence.ShapeSequence{
+	allPolygonalSequences = []sequence.Sequence{
 		sequence.Triangular,
 		sequence.Square,
 		sequence.Pentagonal,
