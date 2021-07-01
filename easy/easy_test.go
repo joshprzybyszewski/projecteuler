@@ -722,3 +722,73 @@ func TestGetSmallestPermutationRepresentingNCubes(t *testing.T) {
 		getSmallestPermutationRepresentingNCubes(3),
 	)
 }
+
+func TestSqrtAsContinuedFraction(t *testing.T) {
+	testCases := []struct {
+		number    int
+		expPrefix []int
+		expCycle  []int
+	}{{
+		number:    2,
+		expPrefix: []int{1},
+		expCycle:  []int{2},
+	}, {
+		number:    3,
+		expPrefix: []int{1},
+		expCycle:  []int{1, 2},
+	}, {
+		number:    4,
+		expPrefix: nil,
+		expCycle:  nil,
+	}, {
+		number:    5,
+		expPrefix: []int{2},
+		expCycle:  []int{4},
+	}, {
+		number:    6,
+		expPrefix: []int{2},
+		expCycle:  []int{2, 4},
+	}, {
+		number:    7,
+		expPrefix: []int{2},
+		expCycle:  []int{1, 1, 1, 4},
+	}, {
+		number:    8,
+		expPrefix: []int{2},
+		expCycle:  []int{1, 4},
+	}, {
+		number:    9,
+		expPrefix: nil,
+		expCycle:  nil,
+	}, {
+		number:    10,
+		expPrefix: []int{3},
+		expCycle:  []int{6},
+	}, {
+		number:    11,
+		expPrefix: []int{3},
+		expCycle:  []int{3, 6},
+	}, {
+		number:    12,
+		expPrefix: []int{3},
+		expCycle:  []int{2, 6},
+	}, {
+		number:    13,
+		expPrefix: []int{3},
+		expCycle:  []int{1, 1, 1, 1, 6},
+	}}
+
+	for _, tc := range testCases {
+		prefix, cycle := sqrtAsContinuedFraction(tc.number)
+		if len(tc.expPrefix) == 0 {
+			assert.Empty(t, prefix)
+		} else {
+			assert.Equal(t, tc.expPrefix, prefix)
+		}
+		if len(tc.expCycle) == 0 {
+			assert.Empty(t, cycle)
+		} else {
+			assert.Equal(t, tc.expCycle, cycle)
+		}
+	}
+}
