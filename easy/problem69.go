@@ -36,9 +36,21 @@ func SolveProblem69() string {
 }
 
 func getMaxNOverTotientWithMaxN(maxN int) int {
+	// full disclosure: I came up with this solution after doing it the hard
+	// way below.
+	v := 1
+	for _, p := range primes.Below(100) {
+		nextV := v * p
+		if nextV > maxN {
+			return v
+		}
+		v = nextV
+	}
+
+	// the following takes about 2 minutes, and it reveals the sequence 1, 2, 6, 30, 210, 2310, 30030, 510510.
 	var max float64
 	var bestN int
-	for n := maxN; n > 0; n-- {
+	for n := 1; n <= maxN; n++ {
 		v := getNOverTotient(n)
 		if v > max {
 			log.Printf("for n=%6d, n/totient(n) = %8v", n, v)
