@@ -792,3 +792,30 @@ func TestSqrtAsContinuedFraction(t *testing.T) {
 		}
 	}
 }
+
+func TestGetMinDiophantine(t *testing.T) {
+	testCases := []struct {
+		inputD int
+		expX   uint
+		expY   uint
+	}{{
+		inputD: 5,
+		expX:   9,
+		expY:   4,
+	}, {
+		inputD: 13,
+		expX:   649,
+		expY:   180,
+	}}
+
+	for _, tc := range testCases {
+		actX, actY := getMinDiophantine(tc.inputD)
+		assert.Equal(t, tc.expX, actX)
+		assert.Equal(t, tc.expY, actY)
+	}
+}
+
+func TestGetMaxXForMinDiophantinesAtOrBelow(t *testing.T) {
+	bestD := getMaxXForMinDiophantinesAtOrBelow(7)
+	assert.Equal(t, 5, bestD)
+}

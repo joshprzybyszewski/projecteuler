@@ -81,33 +81,45 @@ func (c *sequenceCache) GetNth(n uint) int {
 	return c.numbers[n-1]
 }
 
-func (c *sequenceCache) isInCache(d int) (bool, bool) {
+func (c *sequenceCache) indexInCache(d int) (int, bool) {
 	c.lock.RLock()
 	defer c.lock.RUnlock()
 
 	if len(c.numbers) == 0 || c.numbers[len(c.numbers)-1] < d {
-		return false, false
+		return -1, false
 	}
 
 	i := sort.Search(len(c.numbers), func(i int) bool {
 		return d <= c.numbers[i]
 	})
-	exists := i < len(c.numbers) && c.numbers[i] == d
+	if i < len(c.numbers) && c.numbers[i] == d {
+		return i, true
+	}
 
-	return exists, true
+	return -1, true
 }
 
 func (c *sequenceCache) Is(d int) bool {
+	_, is := c.GetPosition(d)
+	return is
+}
 
-	is, ok := c.isInCache(d)
+func (c *sequenceCache) GetPosition(d int) (uint, bool) {
+	i, ok := c.indexInCache(d)
 	if ok {
-		return is
+		if i < 0 {
+			return 0, false
+		}
+		return uint(i + 1), true
 	}
 
 	c.generatePast(d)
-	is, ok = c.isInCache(d)
+	i, ok = c.indexInCache(d)
 	if ok {
-		return is
+		if i < 0 {
+			return 0, false
+		}
+		return uint(i + 1), true
 	}
 
 	panic(`max slice not implemented`)
@@ -118,10 +130,10 @@ func (c *sequenceCache) Is(d int) bool {
 	for i := uint(start); ; i++ {
 		pn := c.generator.generate(i)
 		if pn == d {
-			return true
+			return 0, true
 		}
 		if pn > d {
-			return false
+			return 0, false
 		}
 	}
 }
